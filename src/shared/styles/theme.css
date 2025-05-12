@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .font-pretendard {
+    font-family: 'Pretendard', sans-serif; 
+  }
+
+  /* Title 폰트 스타일 */
+  .title-bold-24 {
+    @apply text-[1.5rem] leading-[1.25rem] font-bold;  /* 24px, bold */
+  }
+
+  .title-bold-20 {
+    @apply text-[1.25rem] leading-[1.5rem] font-bold;  /* 20px, bold */
+  }
+
+  .title-semi-20 {
+    @apply text-[1.25rem] leading-[1.5rem] font-semibold;  /* 20px, semibold */
+  }
+
+  .title-reg-20 {
+    @apply text-[1.25rem] leading-[1.5rem] font-normal;  /* 20px, regular */
+  }
+
+  .title-bold-18 {
+    @apply text-[1.125rem] leading-[1.25rem] font-bold;  /* 18px, bold */
+  }
+
+  .title-semi-18 {
+    @apply text-[1.125rem] leading-[1.25rem] font-semibold;  /* 18px, semibold */
+  }
+
+  .title-bold-16 {
+    @apply text-[1rem] leading-[1.25rem] font-bold;  /* 16px, bold */
+  }
+
+  .title-semi-16 {
+    @apply text-[1rem] leading-[1.25rem] font-semibold;  /* 16px, semibold */
+  }
+
+  .title-bold-14 {
+    @apply text-[0.875rem] leading-[1.125rem] font-bold;  /* 14px, bold */
+  }
+
+  .title-semi-14 {
+    @apply text-[0.875rem] leading-[1.125rem] font-semibold;  /* 14px, semibold */
+  }
+
+  /* Body 폰트 스타일 */
+  .body-med-16 {
+    @apply text-[1rem] leading-[1.375rem] font-medium;  /* 16px, medium */
+  }
+
+  .body-med-14 {
+    @apply text-[0.875rem] leading-[1.25rem] font-medium;  /* 14px, medium */
+  }
+
+  .body-reg-14 {
+    @apply text-[0.875rem] leading-[1.25rem] font-normal;  /* 14px, regular */
+  }
+
+  .body-bold-13 {
+    @apply text-[0.8125rem] leading-[1.375rem] font-bold;  /* 13px, bold */
+  }
+
+  .body-semi-12 {
+    @apply text-[0.75rem] leading-[1.25rem] font-semibold;  /* 12px, semibold */
+  }
+
+  .body-med-10 {
+    @apply text-[0.625rem] leading-[1.25rem] font-medium;  /* 10px, medium */
+  }
+
+  /* Caption 폰트 스타일 */
+  .caption-extraB-13 {
+    @apply text-[0.8125rem] leading-[1.375rem] font-extrabold;  /* 13px, extrabold */
+  }
+
+  .caption-semi-13 {
+    @apply text-[0.8125rem] leading-[1.375rem] font-semibold;  /* 13px, semibold */
+  }
+
+  .caption-reg-13 {
+    @apply text-[0.8125rem] leading-[1.375rem] font-normal;  /* 13px, regular */
+  }
+
+  .caption-med-12 {
+    @apply text-[0.75rem] leading-[1.25rem] font-medium;  /* 12px, medium */
+  }
+
+  /* Main Colors */
+  .Mainblue { color: #0073F9; }
+  .Blue-1 { color: #E8EDFF; }
+  .Blue-2 { color: #F5F8FF; }
+  .Blue-3 { color: #E2F0FF; }
+  .SoftGreen { color: #2CAB6F; }
+  .ErrorRed { color: #FF3033; }
+  .SoftRed { color: #FFDDDD; }
+
+  /* Grays */
+  .SoftBlack { color: #393939; }
+  .WGray { color: #5B5E62; }
+  .WGray-1 { color: #828690; }
+  .WGray-2 { color: #F1F1F1; }
+  .WGray-3 { color: #F6F7F9; }
+  .WGray-4 { color: #F9F9F9; }
+  .Black { color: #000000; }
+  .CGray { color: #16171C; }
+  .CGray-1 { color: #30343F; }
+  .CGray-2 { color: #434956; }
+  .CGray-3 { color: #5D6373; }
+  .CGray-4 { color: #808699; }
+  .CGray-5 { color: #A8ABBD; }
+  .CGray-6 { color: #CACED8; }
+  .CGray-7 { color: #ECEDF0; }
+  .CGray-8 { color: #F2F3F4; }
+  .White { color: #FFFFFF; }
+}

@@ -19,8 +19,8 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <div className="bg-green-200 text-center text-xl font-bold p-4 rounded-md">
-        <p> ✅ Tailwind 적용 테스트</p>
-    </div>
+          <p> ✅ Tailwind 적용 테스트</p>
+      </div>
     </>
   )
 }
