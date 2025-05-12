@@ -44,22 +44,6 @@ module.exports = {
         'caption-13': '18px',
         'caption-12': '20px',
       },
-      fontWeight: {
-        // Title
-        'title-bold': '700',
-        'title-semi': '600',
-        'title-regular': '400',
-
-        // Body
-        'body-bold': '700',
-        'body-semi': '600',
-        'body-regular': '400',
-
-        // Caption
-        'caption-bold': '700',
-        'caption-semi': '600',
-        'caption-regular': '400',
-      },
       colors: {
         // Main Colors
         MAINBLUE: '#0073F9',
