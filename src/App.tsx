@@ -18,9 +18,12 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <div className="bg-green-200 text-center text-xl font-bold p-4 rounded-md">
-          <p> ✅ Tailwind 적용 테스트</p>
+      <div className="bg-Mainblue text-White p-4 rounded">
+        배경색은 Mainblue, 텍스트는 White
       </div>
+      <p className="text-WGray-1">
+        회색 텍스트 테스트
+      </p>
     </>
   )
 }

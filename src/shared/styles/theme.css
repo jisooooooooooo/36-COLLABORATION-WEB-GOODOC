@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer components {
   .font-pretendard {
     font-family: 'Pretendard', sans-serif; 
@@ -9,112 +5,179 @@
 
   /* Title 폰트 스타일 */
   .title-bold-24 {
-    @apply text-[1.5rem] leading-[1.25rem] font-bold;  /* 24px, bold */
+    @apply text-[1.5rem] leading-[1.25rem];
+    font-weight: 700; /* bold */
   }
 
   .title-bold-20 {
-    @apply text-[1.25rem] leading-[1.5rem] font-bold;  /* 20px, bold */
+    @apply text-[1.25rem] leading-[1.5rem];
+    font-weight: 700; /* bold */
   }
 
   .title-semi-20 {
-    @apply text-[1.25rem] leading-[1.5rem] font-semibold;  /* 20px, semibold */
+    @apply text-[1.25rem] leading-[1.5rem];
+    font-weight: 600; /* semibold */
   }
 
   .title-reg-20 {
-    @apply text-[1.25rem] leading-[1.5rem] font-normal;  /* 20px, regular */
+    @apply text-[1.25rem] leading-[1.5rem];
+    font-weight: 400; /* normal */
   }
 
   .title-bold-18 {
-    @apply text-[1.125rem] leading-[1.25rem] font-bold;  /* 18px, bold */
+    @apply text-[1.125rem] leading-[1.25rem];
+    font-weight: 700; /* bold */
   }
 
   .title-semi-18 {
-    @apply text-[1.125rem] leading-[1.25rem] font-semibold;  /* 18px, semibold */
+    @apply text-[1.125rem] leading-[1.25rem];
+    font-weight: 600; /* semibold */
   }
 
   .title-bold-16 {
-    @apply text-[1rem] leading-[1.25rem] font-bold;  /* 16px, bold */
+    @apply text-[1rem] leading-[1.25rem];
+    font-weight: 700; /* bold */
   }
 
   .title-semi-16 {
-    @apply text-[1rem] leading-[1.25rem] font-semibold;  /* 16px, semibold */
+    @apply text-[1rem] leading-[1.25rem];
+    font-weight: 600; /* semibold */
   }
 
   .title-bold-14 {
-    @apply text-[0.875rem] leading-[1.125rem] font-bold;  /* 14px, bold */
+    @apply text-[0.875rem] leading-[1.125rem];
+    font-weight: 700; /* bold */
   }
 
   .title-semi-14 {
-    @apply text-[0.875rem] leading-[1.125rem] font-semibold;  /* 14px, semibold */
+    @apply text-[0.875rem] leading-[1.125rem];
+    font-weight: 600; /* semibold */
   }
 
   /* Body 폰트 스타일 */
   .body-med-16 {
-    @apply text-[1rem] leading-[1.375rem] font-medium;  /* 16px, medium */
+    @apply text-[1rem] leading-[1.375rem];
+    font-weight: 500; /* medium */
   }
 
   .body-med-14 {
-    @apply text-[0.875rem] leading-[1.25rem] font-medium;  /* 14px, medium */
+    @apply text-[0.875rem] leading-[1.25rem];
+    font-weight: 500; /* medium */
   }
 
   .body-reg-14 {
-    @apply text-[0.875rem] leading-[1.25rem] font-normal;  /* 14px, regular */
+    @apply text-[0.875rem] leading-[1.25rem];
+    font-weight: 400; /* normal */
   }
 
   .body-bold-13 {
-    @apply text-[0.8125rem] leading-[1.375rem] font-bold;  /* 13px, bold */
+    @apply text-[0.8125rem] leading-[1.375rem];
+    font-weight: 700; /* bold */
   }
 
   .body-semi-12 {
-    @apply text-[0.75rem] leading-[1.25rem] font-semibold;  /* 12px, semibold */
+    @apply text-[0.75rem] leading-[1.25rem];
+    font-weight: 600; /* semibold */
   }
 
   .body-med-10 {
-    @apply text-[0.625rem] leading-[1.25rem] font-medium;  /* 10px, medium */
+    @apply text-[0.625rem] leading-[1.25rem];
+    font-weight: 500; /* medium */
   }
 
   /* Caption 폰트 스타일 */
   .caption-extraB-13 {
-    @apply text-[0.8125rem] leading-[1.375rem] font-extrabold;  /* 13px, extrabold */
+    @apply text-[0.8125rem] leading-[1.375rem];
+    font-weight: 800; /* extrabold */
   }
 
   .caption-semi-13 {
-    @apply text-[0.8125rem] leading-[1.375rem] font-semibold;  /* 13px, semibold */
+    @apply text-[0.8125rem] leading-[1.375rem];
+    font-weight: 600; /* semibold */
   }
 
   .caption-reg-13 {
-    @apply text-[0.8125rem] leading-[1.375rem] font-normal;  /* 13px, regular */
+    @apply text-[0.8125rem] leading-[1.375rem];
+    font-weight: 400; /* normal */
   }
 
   .caption-med-12 {
-    @apply text-[0.75rem] leading-[1.25rem] font-medium;  /* 12px, medium */
+    @apply text-[0.75rem] leading-[1.25rem];
+    font-weight: 500; /* medium */
   }
 
   /* Main Colors */
-  .Mainblue { color: #0073F9; }
-  .Blue-1 { color: #E8EDFF; }
-  .Blue-2 { color: #F5F8FF; }
-  .Blue-3 { color: #E2F0FF; }
-  .SoftGreen { color: #2CAB6F; }
-  .ErrorRed { color: #FF3033; }
-  .SoftRed { color: #FFDDDD; }
+  .text-Mainblue { color: #0073F9; }
+  .bg-Mainblue { background-color: #0073F9; }
+
+  .text-Blue-1 { color: #E8EDFF; }
+  .bg-Blue-1 { background-color: #E8EDFF; }
+
+  .text-Blue-2 { color: #F5F8FF; }
+  .bg-Blue-2 { background-color: #F5F8FF; }
+
+  .text-Blue-3 { color: #E2F0FF; }
+  .bg-Blue-3 { background-color: #E2F0FF; }
+
+  .text-SoftGreen { color: #2CAB6F; }
+  .bg-SoftGreen { background-color: #2CAB6F; }
+
+  .text-ErrorRed { color: #FF3033; }
+  .bg-ErrorRed { background-color: #FF3033; }
+
+  .text-SoftRed { color: #FFDDDD; }
+  .bg-SoftRed { background-color: #FFDDDD; }
+
 
   /* Grays */
-  .SoftBlack { color: #393939; }
-  .WGray { color: #5B5E62; }
-  .WGray-1 { color: #828690; }
-  .WGray-2 { color: #F1F1F1; }
-  .WGray-3 { color: #F6F7F9; }
-  .WGray-4 { color: #F9F9F9; }
-  .Black { color: #000000; }
-  .CGray { color: #16171C; }
-  .CGray-1 { color: #30343F; }
-  .CGray-2 { color: #434956; }
-  .CGray-3 { color: #5D6373; }
-  .CGray-4 { color: #808699; }
-  .CGray-5 { color: #A8ABBD; }
-  .CGray-6 { color: #CACED8; }
-  .CGray-7 { color: #ECEDF0; }
-  .CGray-8 { color: #F2F3F4; }
-  .White { color: #FFFFFF; }
+  .text-SoftBlack { color: #393939; }
+  .bg-SoftBlack { background-color: #393939; }
+
+  .text-WGray { color: #5B5E62; }
+  .bg-WGray { background-color: #5B5E62; }
+
+  .text-WGray-1 { color: #828690; }
+  .bg-WGray-1 { background-color: #828690; }
+
+  .text-WGray-2 { color: #F1F1F1; }
+  .bg-WGray-2 { background-color: #F1F1F1; }
+
+  .text-WGray-3 { color: #F6F7F9; }
+  .bg-WGray-3 { background-color: #F6F7F9; }
+
+  .text-WGray-4 { color: #F9F9F9; }
+  .bg-WGray-4 { background-color: #F9F9F9; }
+
+  .text-Black { color: #000000; }
+  .bg-Black { background-color: #000000; }
+
+  .text-CGray { color: #16171C; }
+  .bg-CGray { background-color: #16171C; }
+
+  .text-CGray-1 { color: #30343F; }
+  .bg-CGray-1 { background-color: #30343F; }
+
+  .text-CGray-2 { color: #434956; }
+  .bg-CGray-2 { background-color: #434956; }
+
+  .text-CGray-3 { color: #5D6373; }
+  .bg-CGray-3 { background-color: #5D6373; }
+
+  .text-CGray-4 { color: #808699; }
+  .bg-CGray-4 { background-color: #808699; }
+
+  .text-CGray-5 { color: #A8ABBD; }
+  .bg-CGray-5 { background-color: #A8ABBD; }
+
+  .text-CGray-6 { color: #CACED8; }
+  .bg-CGray-6 { background-color: #CACED8; }
+
+  .text-CGray-7 { color: #ECEDF0; }
+  .bg-CGray-7 { background-color: #ECEDF0; }
+
+  .text-CGray-8 { color: #F2F3F4; }
+  .bg-CGray-8 { background-color: #F2F3F4; }
+
+  .text-White { color: #FFFFFF; }
+  .bg-White { background-color: #FFFFFF; }
 }

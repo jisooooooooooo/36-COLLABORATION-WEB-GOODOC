@@ -1,23 +1,22 @@
-@import './theme.css';
-
 html, body {
   font-family: 'Pretendard', sans-serif;
-  margin: 0; 
-  padding: 0; 
-  background-color: #ffffff; 
-  font-size: 1rem; 
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  font-size: 1rem;
   line-height: 1.5;
   color: #333;
 }
 
 a {
-  color: inherit; 
-  text-decoration: none; 
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  cursor: pointer; 
-  border: none; 
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
 * {
@@ -25,40 +24,19 @@ button {
 }
 
 input, textarea, select, button {
-  font-family: inherit; 
-  font-size: inherit; 
-  border: 1px solid #ccc; 
-  padding: 0.5rem 1rem; 
-  outline: none; 
+  font-family: inherit;
+  font-size: inherit;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  outline: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0; 
-  font-weight: bold; 
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.flex-row {
-  flex-direction: row;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.align-center {
-  align-items: center;
+  margin: 0;
+  font-weight: bold;
 }
 
 img {
-  max-width: 100%; 
-  height: auto; 
-  display: block; 
+  max-width: 100%;
+  display: block;
 }

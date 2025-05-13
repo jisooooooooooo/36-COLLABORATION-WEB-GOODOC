@@ -7,12 +7,16 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tw-init": "tailwindcss init",
+    "tw-build": "tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.6",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
