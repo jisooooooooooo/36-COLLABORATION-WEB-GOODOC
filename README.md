@@ -1,6 +1,6 @@
 ```
 실시간 비대면 진료 서비스, GOODOC 🩺
-36기 AT SOPT 합동세미나 AI 건강매니저 굿봇 이용 플로우 개선 프로젝트입니다.
+36기 AT SOPT 합동세미나 굿봇 이용 플로우 개선 프로젝트입니다.
 ```
 ![Slide 16_9 - 9](https://github.com/user-attachments/assets/20bd3f31-2435-4a38-bf14-d3ba8c1829d4)
 
