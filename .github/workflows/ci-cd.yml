@@ -59,7 +59,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
-              body: `### 🛠️ 빌드 결과\n${message}`
+              body: `### 빌드 결과\n${message}`
             });
 
       - name: Fail job if build failed
