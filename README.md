@@ -5,7 +5,7 @@
 ![Slide 16_9 - 9](https://github.com/user-attachments/assets/20bd3f31-2435-4a38-bf14-d3ba8c1829d4)
 
 # ⚒️ Developer
-|임지수</br>[@jisooooooooooo](https://github.com/jisooooooooooo)|임지성</br>[@jstar000](https://github.com/jstar000)|정희연</br>[@heeyyeon](https://github.com/@heeyyeon)|김수연</br>[@mmaybei](https://github.com/mmaybei)|
+|임지수</br>[@jisooooooooooo](https://github.com/jisooooooooooo)|임지성</br>[@jstar000](https://github.com/jstar000)|정희연</br>[@heeyyeon](https://github.com/heeyyeon)|김수연</br>[@mmaybei](https://github.com/mmaybei)|
 |:---:|:---:|:---:|:---:|
 |<img src = "https://github.com/user-attachments/assets/99ee54a2-eae0-4ccd-94a3-419d6266000c" width ="250">|<img src = "https://github.com/user-attachments/assets/deff2db3-ba43-4fbb-a0a7-660bd5731483" width ="250">|<img src = "https://github.com/user-attachments/assets/069a27d6-ac46-411e-8dfd-bd01d8ce2cab" width ="250">|<img src = "https://github.com/user-attachments/assets/c27cd455-47d5-49f0-ae91-a2582e9db4b8" width ="250">|
 |`채팅`|`Q&A 리스트 뷰`</br>`Q&A 상세 뷰`|`채팅`|`메인 뷰`</br>`로그인 뷰`|
