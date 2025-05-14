@@ -6,7 +6,7 @@ const ChatHeader: React.FC = () => {
     <header className="flex items-center justify-between px-[20px] py-[8px] border-b border-[#CACED8]">
       <div className="flex items-center">
         <BackArrowIcon className="w-[36px] h-[36px] cursor-pointer" />
-        <span className="title-semi-14 text-SoftBlack ml-[8px] mr-[4px]">AI 건강매니저 굿봇</span>
+        <span className="ml-[8px] mr-[4px] title-semi-14 text-SoftBlack">AI 건강매니저 굿봇</span>
         <div className="flex items-center justify-center px-[5px] py-[3px] rounded-[12px] bg-Mainblue">
           <span className="body-med-10 text-White">상담가능</span>
         </div>
