@@ -1,5 +1,5 @@
-import DeptFilter from '../components/DeptFilter';
-import QnAList from '../components/QnAList';
+import DeptFilter from '../components/DeptFilter/DeptFilter';
+import QnAList from '../components/QnA/QnAList';
 
 const QnAHome = () => {
   return (

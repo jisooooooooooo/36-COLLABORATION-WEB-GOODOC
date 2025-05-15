@@ -9,15 +9,15 @@ interface QnAListItemProps {
 
 const QnAListItem = ({ question, summary, department, timeElapsed }: QnAListItemProps) => {
   return (
-    <div className="flex flex-col w-[20.9375rem]">
-      <div className="flex gap-[.625rem] items-center text-CGray-4">
+    <div className="flex flex-col w-[335px]">
+      <div className="flex gap-[8px] items-center text-CGray-4">
         <span className="caption-semi-13">{department}</span>
         <Ellipsis />
         <span className="caption-reg-13">{timeElapsed}</span>
       </div>
 
-      <span className="title-semi-18 mt-[.75rem] line-clamp-2">{question}</span>
-      <span className="body-reg-14 mt-[.625rem] text-CGray-4 line-clamp-2">{summary}</span>
+      <span className="title-semi-18 mt-[16px] line-clamp-2">{question}</span>
+      <span className="body-reg-14 mt-[.5rem] text-CGray-4 line-clamp-2">{summary}</span>
     </div>
   );
 };
