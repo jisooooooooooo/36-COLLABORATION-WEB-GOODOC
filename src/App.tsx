@@ -1,4 +1,10 @@
+import ChatPage from './pages/chat/page/ChatPage';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <ChatPage />
+    </>
+  );
 }
 export default App;
