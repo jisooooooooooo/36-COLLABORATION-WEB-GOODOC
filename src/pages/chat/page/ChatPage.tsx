@@ -6,7 +6,7 @@ const ChatPage: React.FC = () => {
   return (
     <div className="h-screen flex flex-col">
       <ChatHeader />
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto scrollbar-hide">
         <ChatBody />
       </main>
       <ChatInput />
