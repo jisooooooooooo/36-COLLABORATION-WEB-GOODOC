@@ -2,7 +2,7 @@ import SendIcon from '@shared/assets/svg/send.svg?react';
 
 const ChatInput: React.FC = () => {
   return (
-    <div className="flex items-center bg-white rounded-tl-[.5rem] rounded-tr-[.5rem] shadow-[.25rem_-0.25rem_1.25rem_0rem_rgba(0,0,0,0.05)] px-[1rem] py-[.75rem]">
+    <div className="flex items-center mb-[2.125rem] px-[1rem] py-[.75rem] rounded-tl-[.5rem] rounded-tr-[.5rem] bg-white shadow-[.25rem_-0.25rem_1.25rem_0rem_rgba(0,0,0,0.05)]">
       <input
         type="text"
         placeholder="메시지를 입력하세요."
