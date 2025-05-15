@@ -5,13 +5,13 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ label, onClick, variant = 'primary' }) => {
-  const buttonStyles = variant === 'primary' ? 'bg-Blue-3 text-Mainblue' : 'bg-Mainblue text-white';
+  const buttonStyles = variant === 'primary' ? 'bg-Blue-3 text-Mainblue' : 'bg-Mainblue text-White';
   return (
     <button
       onClick={onClick}
-      className={`${buttonStyles} text-[.875rem] leading-[.5rem] font-600 w-[7.1875rem] h-[2.5rem] rounded-[.5rem] p-[1rem] sm:p-[1.25rem] gap-[.25rem] border-none`}
+      className={`${buttonStyles} w-[115px] h-[40px] rounded-[.5rem] border-none`}
     >
-      {label}
+      <div className="title-semi-14">{label}</div>
     </button>
   );
 };
