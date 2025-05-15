@@ -1,6 +1,4 @@
-import QNAListItem from './pages/qna/qnaList/components/QnAListItem';
-
 function App() {
-  return <QNAListItem />;
+  return <></>;
 }
 export default App;
