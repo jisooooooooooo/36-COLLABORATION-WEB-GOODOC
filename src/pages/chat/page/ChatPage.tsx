@@ -1,6 +1,6 @@
-import ChatHeader from '../components/ChatHeader';
-import ChatBody from '../components/ChatBody';
-import ChatInput from '../components/ChatInput';
+import ChatHeader from '@pages/chat/components/ChatHeader';
+import ChatBody from '@pages/chat/components/ChatBody';
+import ChatInput from '@pages/chat/components/ChatInput';
 
 const ChatPage: React.FC = () => {
   return (
