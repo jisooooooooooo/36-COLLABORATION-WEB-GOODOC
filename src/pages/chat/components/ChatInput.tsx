@@ -2,13 +2,13 @@ import SendIcon from '@shared/assets/svg/send.svg?react';
 
 const ChatInput: React.FC = () => {
   return (
-    <div className="flex items-center bg-white rounded-tl-[8px] rounded-tr-[8px] shadow-[4px_-4px_20px_0px_rgba(0,0,0,0.05)] px-[16px] py-[12px]">
+    <div className="flex items-center bg-white rounded-tl-[.5rem] rounded-tr-[.5rem] shadow-[.25rem_-0.25rem_1.25rem_0rem_rgba(0,0,0,0.05)] px-[1rem] py-[.75rem]">
       <input
         type="text"
         placeholder="메시지를 입력하세요."
-        className="flex-1 h-[40px] px-[10px] py-[9px] border border-[#ECEDF0] rounded-[12px] bg-white body-med-14 placeholder:body-med-14 placeholder:text-CGray-6 outline-none"
+        className="flex-1 h-[2.5rem] px-[.625rem] py-[.5625rem] border border-[#ECEDF0] rounded-[.75rem] bg-white body-med-14 placeholder:body-med-14 placeholder:text-CGray-6 outline-none"
       />
-      <SendIcon className="w-[24px] h-[24px] ml-[12px] cursor-pointer text-CGray-6" />
+      <SendIcon className="w-[1.5rem] h-[1.5rem] ml-[.75rem] cursor-pointer text-CGray-6" />
     </div>
   );
 };
