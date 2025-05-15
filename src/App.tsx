@@ -1,4 +1,6 @@
+import QnAHome from './pages/qna/qnaList/page/QnAHome';
+
 function App() {
-  return <></>;
+  return <QnAHome />;
 }
 export default App;

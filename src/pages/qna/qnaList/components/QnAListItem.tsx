@@ -16,8 +16,8 @@ const QnAListItem = ({ question, summary, department, timeElapsed }: QnAListItem
         <span className="caption-reg-13">{timeElapsed}</span>
       </div>
 
-      <span className="title-semi-18 mt-[.625rem] line-clamp-2">{question}</span>
-      <span className="body-reg-14 mt-[.5rem] text-CGray-4 line-clamp-2">{summary}</span>
+      <span className="title-semi-18 mt-[.75rem] line-clamp-2">{question}</span>
+      <span className="body-reg-14 mt-[.625rem] text-CGray-4 line-clamp-2">{summary}</span>
     </div>
   );
 };
