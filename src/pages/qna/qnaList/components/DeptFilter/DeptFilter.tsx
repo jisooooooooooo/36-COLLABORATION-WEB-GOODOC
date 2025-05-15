@@ -7,9 +7,9 @@ const DeptFilter = () => {
   const { showDeptList, selectedDept, toggleDeptList, selectDept } = useDeptFilter();
 
   return (
-    <div className="flex flex-col w-full ml-[20px] mt-[20px]">
+    <div className="flex flex-col w-full ml-[1.25rem] mt-[1.25rem]">
       <button type="button" className="flex" onClick={toggleDeptList}>
-        <span className="title-bold-20 text-CGray-1 mr-[.25rem]">진료과 전체</span>
+        <span className="title-bold-20 text-CGray-1 mr-[4px]">진료과 전체</span>
         <Chevron
           className={`transition-transform duration-300 ${!showDeptList ? 'rotate-180' : 'rotate-0'}`}
         />
@@ -17,8 +17,8 @@ const DeptFilter = () => {
 
       {/* 추후 Framer Motion 등으로 애니메이션 구현 예정 */}
       {showDeptList && (
-        <div className="scrollbar-hide overflow-x-auto mt-[20px]">
-          <div className="flex flex-wrap gap-x-[8px] gap-y-[12px] min-w-[1150px] px-4 py-2">
+        <div className="scrollbar-hide overflow-x-auto mt-[1.25rem]">
+          <div className="flex flex-wrap gap-x-[.5rem] gap-y-[.75rem] min-w-[71.875rem] px-4 py-2">
             {deptList.map((dept, index) => (
               <DeptBox
                 key={index}
