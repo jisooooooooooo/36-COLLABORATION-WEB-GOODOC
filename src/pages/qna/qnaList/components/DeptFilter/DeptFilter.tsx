@@ -1,7 +1,7 @@
 import Chevron from '@shared/assets/svg/chevron-updown.svg?react';
-import DeptBox from './DeptBox';
 import { deptList } from '@/shared/constants/constant';
-import { useDeptFilter } from '../hook/useDeptFilter';
+import DeptBox from '@pages/qna/qnaList/components/DeptFilter/DeptBox';
+import { useDeptFilter } from '@pages/qna/qnaList/components/hook/useDeptFilter';
 
 const DeptFilter = () => {
   const { showDeptList, selectedDept, toggleDeptList, selectDept } = useDeptFilter();
@@ -19,9 +19,9 @@ const DeptFilter = () => {
       {showDeptList && (
         <div className="scrollbar-hide overflow-x-auto mt-[1.25rem]">
           <div className="flex flex-wrap gap-x-[.5rem] gap-y-[.75rem] min-w-[71.875rem] px-4 py-2">
-            {deptList.map((dept, index) => (
+            {deptList.map(dept => (
               <DeptBox
-                key={index}
+                key={dept}
                 deptName={dept}
                 isSelected={dept === selectedDept}
                 onBoxClick={() => selectDept(dept)}
