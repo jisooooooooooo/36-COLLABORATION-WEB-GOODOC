@@ -1,38 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChatBubbleBot from '@/pages/chat/components/chatBox/ChatBubbleBot';
 import Button from '@pages/chat/components/Button';
+import { formatTime } from '@/shared/utils/date';
+import { chatFadeUp, chatEnter, chatHidden } from '@/shared/styles/animation';
 
-const formatTime = (date: Date) => {
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const isAM = hours < 12;
-  const displayHours = hours % 12 || 12;
-  const displayMinutes = minutes.toString().padStart(2, '0');
-  const period = isAM ? '오전' : '오후';
+interface ChatWelcomeBoxProps {
+  onStart: () => void;
+}
 
-  return `${period} ${displayHours}:${displayMinutes}`;
-};
-
-const ChatWelcomeBox = () => {
+const ChatWelcomeBox: React.FC<ChatWelcomeBoxProps> = ({ onStart }) => {
   const [visible, setVisible] = useState(false);
-  const [time, setTime] = useState('');
+  const timeRef = useRef(formatTime(new Date()));
 
   useEffect(() => {
-    setTime(formatTime(new Date()));
-
     const timer = setTimeout(() => {
       setVisible(true);
     }, 100);
-
     return () => clearTimeout(timer);
   }, []);
 
+  const animationClass = visible ? chatEnter : chatHidden;
+
   return (
-    <div
-      className={`transition-all duration-500 ease-out transform ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-      }`}
-    >
+    <div className={`${chatFadeUp} ${animationClass}`}>
       <ChatBubbleBot
         message={
           <>
@@ -46,11 +36,11 @@ const ChatWelcomeBox = () => {
 
             <div className="flex gap-[.75rem] mt-[1rem] justify-center w-full">
               <Button label="Q&A 확인하기" onClick={() => {}} variant="secondary" />
-              <Button label="상담 시작하기" onClick={() => {}} variant="primary" />
+              <Button label="상담 시작하기" onClick={onStart} variant="primary" />
             </div>
           </>
         }
-        time={time}
+        time={timeRef.current}
       />
     </div>
   );

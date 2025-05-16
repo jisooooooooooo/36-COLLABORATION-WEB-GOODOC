@@ -1,4 +1,4 @@
-import ChatBubbleBot from '@pages/chat/components/chatBot/ChatBubbleBot';
+import ChatBubbleBot from './ChatBubbleBot';
 
 const ChatWelcomeBox = () => {
   return (
