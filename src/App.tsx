@@ -1,4 +1,6 @@
+import QnASearch from './pages/qna/qnaList/components/QnASearch';
+
 function App() {
-  return <></>;
+  return <QnASearch></QnASearch>;
 }
 export default App;
