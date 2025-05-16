@@ -8,7 +8,6 @@ interface QnAButtonProps {
   py: string; // ex: 'py-[0.5rem]'
   position?: string; // fixed 등
   bottom?: string;
-  left?: string;
 }
 
 const QnAButton = ({
