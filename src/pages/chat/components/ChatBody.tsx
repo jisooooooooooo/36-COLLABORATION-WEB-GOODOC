@@ -1,4 +1,5 @@
 import Alert from '@shared/assets/svg/chatAlert.svg?react';
+import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 
 const NOTICE_MESSAGE = '익명으로 공개하니 안심하세요';
 
@@ -9,6 +10,8 @@ const ChatBody: React.FC = () => {
         <Alert className="w-[1rem] h-[1rem]" aria-hidden="true" />
         <p className="title-semi-14 text-Mainblue">{NOTICE_MESSAGE}</p>
       </div>
+
+      <ChatWelcomeBox />
     </section>
   );
 };
