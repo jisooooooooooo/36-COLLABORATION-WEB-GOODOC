@@ -3,7 +3,7 @@ import LogoHeader from '@/shared/assets/images/Logoheader.png';
 import IconMenu from '@/shared/assets/svg/IconMenu.svg?react';
 import IconSearch from '@/shared/assets/svg/IconSearch.svg?react';
 
-export default function MainHeader() {
+const MainHeader = () => {
   const [query, setQuery] = useState('');
 
   return (
@@ -26,4 +26,6 @@ export default function MainHeader() {
       <IconMenu className="w-[2.25rem] h-[2.25rem]" />
     </header>
   );
-}
+};
+
+export default MainHeader;
