@@ -3,7 +3,7 @@ import MenuIcon from '@shared/assets/svg/menu.svg?react';
 
 const ChatHeader: React.FC = () => {
   return (
-    <header className="flex items-center justify-between px-[1.25rem] py-[.5rem] border-b border-[#CACED8]">
+    <header className="flex items-center justify-between px-[1.25rem] py-[.5rem] bg-CGray-8 border-b border-[#CACED8]">
       <div className="flex items-center">
         <BackArrowIcon className="w-[2.25rem] h-[2.25rem] cursor-pointer" />
         <span className="ml-[.5rem] mr-[.25rem] title-semi-14 text-SoftBlack">
