@@ -2,10 +2,24 @@ import { useEffect, useState } from 'react';
 import ChatBubbleBot from '@/pages/chat/components/chatBox/ChatBubbleBot';
 import Button from '@pages/chat/components/Button';
 
+const formatTime = (date: Date) => {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const isAM = hours < 12;
+  const displayHours = hours % 12 || 12;
+  const displayMinutes = minutes.toString().padStart(2, '0');
+  const period = isAM ? '오전' : '오후';
+
+  return `${period} ${displayHours}:${displayMinutes}`;
+};
+
 const ChatWelcomeBox = () => {
   const [visible, setVisible] = useState(false);
+  const [time, setTime] = useState('');
 
   useEffect(() => {
+    setTime(formatTime(new Date()));
+
     const timer = setTimeout(() => {
       setVisible(true);
     }, 100);
@@ -36,7 +50,7 @@ const ChatWelcomeBox = () => {
             </div>
           </>
         }
-        time="오후 10:20"
+        time={time}
       />
     </div>
   );
