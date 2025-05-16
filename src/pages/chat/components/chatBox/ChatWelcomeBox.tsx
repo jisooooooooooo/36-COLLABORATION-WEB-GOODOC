@@ -1,5 +1,5 @@
 import ChatBubbleBot from '@pages/chat/components/chatBot/ChatBubbleBot';
-import Button from '@pages/chat/components/Button';
+import Button from '@pages/chat/components/chatBot/Button';
 
 const ChatWelcomeBox = () => {
   return (
