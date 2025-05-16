@@ -1,7 +1,7 @@
 import MapIcon from '@/shared/assets/svg/IconMap.svg?react';
 import DropdownIcon from '@/shared/assets/svg/IconDownwardArrow.svg?react';
 
-export default function LocationCategoryFilter() {
+const LocationCategoryFilter = () => {
   return (
     <div className="flex items-center gap-[.75rem]">
       <div className="flex items-center gap-[.25rem]">
@@ -15,4 +15,6 @@ export default function LocationCategoryFilter() {
       </div>
     </div>
   );
-}
+};
+
+export default LocationCategoryFilter;
