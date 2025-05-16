@@ -81,7 +81,7 @@
   }
 
   .body-med-10 {
-    @apply text-[0.625rem] leading-[1.25rem];
+    @apply text-[0.625rem] leading-[0.75rem];
     font-weight: 500; /* medium */
   }
 
