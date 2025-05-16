@@ -12,4 +12,5 @@ export default {
     },
   },
   plugins: [scrollbarHide],
+  safelist: ['text-white', 'text-CGray', 'text-CGray-3', 'bg-Mainblue', 'bg-White'],
 };
