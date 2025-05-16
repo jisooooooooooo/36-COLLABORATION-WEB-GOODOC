@@ -2,7 +2,7 @@ import QnAListItem from './QnAListItem';
 
 const QnAList = () => {
   return (
-    <div className="flex flex-col gap-[3rem] mt-[1.875rem]">
+    <div className="flex flex-col gap-[3rem] mt-[1.875rem] mb-[5rem]">
       {Array.from({ length: 8 }).map((_, idx) => (
         <QnAListItem
           key={idx}
