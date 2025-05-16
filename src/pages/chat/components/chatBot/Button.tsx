@@ -9,7 +9,7 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, variant = 'primary' }) 
   return (
     <button
       onClick={onClick}
-      className={`${buttonStyles} w-[115px] h-[40px] border-none rounded-[.5rem]`}
+      className={`${buttonStyles} w-[7.1875rem] h-[2.5rem] border-none rounded-[.5rem]`}
     >
       <div className="title-semi-14">{label}</div>
     </button>
