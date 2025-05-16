@@ -4,7 +4,7 @@ import QnAButton from '@/shared/components/QnAButton';
 
 const QnAHome = () => {
   return (
-    <div className="flex flex-col justify-center items-center mb-[100px]">
+    <div className="flex flex-col justify-center items-center mb-[6.25rem]">
       <DeptFilter />
       <QnAList />
       <QnAButton
