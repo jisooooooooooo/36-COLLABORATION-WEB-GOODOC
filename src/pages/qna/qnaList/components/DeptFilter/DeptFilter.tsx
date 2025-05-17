@@ -7,7 +7,7 @@ const DeptFilter = () => {
   const { showDeptList, selectedDept, toggleDeptList, selectDept } = useDeptFilter();
 
   return (
-    <div className="flex flex-col w-full ml-[1.25rem] mt-[1.25rem]">
+    <div className="flex flex-col w-[20.9375rem] mt-[1.25rem]">
       <button type="button" className="flex" onClick={toggleDeptList}>
         <span className="title-bold-20 text-CGray-1 mr-[4px]">진료과 전체</span>
         <Chevron
@@ -17,7 +17,7 @@ const DeptFilter = () => {
 
       {/* 추후 Framer Motion 등으로 애니메이션 구현 예정 */}
       {showDeptList && (
-        <div className="scrollbar-hide overflow-x-auto mt-[1.25rem]">
+        <div className="scrollbar-hide overflow-x-auto mt-[1.25rem] w-[20.9375rem]">
           <div className="flex flex-wrap gap-x-[.5rem] gap-y-[.75rem] min-w-[71.875rem] px-4 py-2">
             {deptList.map(dept => (
               <DeptBox
