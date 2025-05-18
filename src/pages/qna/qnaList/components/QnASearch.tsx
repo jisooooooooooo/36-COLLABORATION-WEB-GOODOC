@@ -7,7 +7,7 @@ const QnASearch = () => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <div className="flex justify-between items-center gap-4 w-[20.9375rem]">
+    <div className="flex justify-between items-center mt-[24px] gap-4 w-[20.9375rem]">
       <button type="button">
         <BackArrow className="w-[2.25rem] h-[2.25rem]" />
       </button>

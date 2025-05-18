@@ -1,9 +1,9 @@
-import ChatPage from './pages/chat/page/ChatPage';
+import QnAHome from './pages/qna/qnaList/page/QnAHome';
 
 function App() {
   return (
     <>
-      <ChatPage />
+      <QnAHome />
     </>
   );
 }

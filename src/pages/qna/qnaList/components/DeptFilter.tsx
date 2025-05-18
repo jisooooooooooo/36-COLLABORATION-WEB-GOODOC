@@ -1,13 +1,13 @@
 import Chevron from '@shared/assets/svg/chevron-updown.svg?react';
 import { deptList } from '@/shared/constants/constant';
-import DeptBox from '@pages/qna/qnaList/components/DeptFilter/DeptBox';
-import { useDeptFilter } from '@pages/qna/qnaList/components/hook/useDeptFilter';
+import DeptBox from '@pages/qna/qnaList/components/DeptBox';
+import { useDeptFilter } from '@pages/qna/hooks/useDeptFilter';
 
 const DeptFilter = () => {
   const { showDeptList, selectedDept, toggleDeptList, selectDept } = useDeptFilter();
 
   return (
-    <div className="flex flex-col w-[20.9375rem] mt-[1.25rem]">
+    <div className="flex flex-col w-[20.9375rem] mt-[2.25rem]">
       <button type="button" className="flex" onClick={toggleDeptList}>
         <span className="title-bold-20 text-CGray-1 mr-[4px]">진료과 전체</span>
         <Chevron
