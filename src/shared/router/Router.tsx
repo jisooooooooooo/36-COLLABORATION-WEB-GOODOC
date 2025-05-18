@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     element: <ChatPage />,
   },
   {
-    path: '/qua',
+    path: '/qna',
     element: <QnAList />,
   },
   {
-    path: '/qua/:id',
+    path: '/qna/:id',
     element: <QnaDetail />,
   },
 ]);
