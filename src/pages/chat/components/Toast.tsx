@@ -7,7 +7,7 @@ interface ToastProps {
   duration?: number;
 }
 
-const Toast: React.FC<ToastProps> = ({ message, onClose, duration = 30000 }) => {
+const Toast: React.FC<ToastProps> = ({ message, onClose, duration = 3000 }) => {
   useEffect(() => {
     const timer = setTimeout(onClose, duration);
     return () => clearTimeout(timer);
