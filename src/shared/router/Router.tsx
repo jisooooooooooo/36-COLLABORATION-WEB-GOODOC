@@ -10,6 +10,11 @@ const router = createBrowserRouter([
     // element: < />,
   },
   {
+    // 메뉴 페이지로 변경
+    path: '/menu',
+    // element: < />,
+  },
+  {
     path: '/chat',
     element: <ChatPage />,
   },
