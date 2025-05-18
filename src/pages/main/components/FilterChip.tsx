@@ -11,6 +11,7 @@ const FilterChip = ({ icon, label, hasDropdown = false }: FilterChipProps) => {
 
   return (
     <button
+      type="button"
       className={`flex-none shrink-0 inline-flex items-center ${paddingX} py-[.4063rem] rounded-full gap-[.25rem] border border-[#F1F1F1]`}
     >
       {icon && <img src={icon} className="w-[1.125rem] h-[1.125rem]" />}
