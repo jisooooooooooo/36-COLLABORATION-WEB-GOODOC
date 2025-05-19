@@ -18,12 +18,12 @@ const MainPage = () => {
   return (
     <div>
       <PromotionBanner />
-      <div className="flex flex-col gap-[16px]">
-        <div className="flex flex-col gap-[24px] pt-[12px] px-[20px]">
+      <div className="flex flex-col gap-[1rem]">
+        <div className="flex flex-col gap-[1.5rem] pt-[.75rem] px-[1.25rem]">
           <MainHeader />
           <LocationCategoryFilter />
         </div>
-        <div className="flex overflow-x-auto scrollbar-hide gap-[8px] px-[20px]">
+        <div className="flex overflow-x-auto scrollbar-hide gap-[.5rem] px-[1.25rem]">
           <FilterChip label="진료중" />
           <FilterChip icon={LogoCircle} label="굿닥병원" hasDropdown={true} />
           <FilterChip icon={IconMoon} label="야간 진료" hasDropdown={true} />
@@ -31,8 +31,8 @@ const MainPage = () => {
         </div>
       </div>
 
-      <section className="flex flex-col gap-[80px] px-[20px] mt-[48px] mb-[36px]">
-        <div className="flex flex-col gap-[48px]">
+      <section className="flex flex-col gap-[5rem] px-[1.25rem] mt-[3rem] mb-[2.25rem]">
+        <div className="flex flex-col gap-[3rem]">
           {hospitals.map(hospital => (
             <HospitalListItem key={hospital.id} {...hospital} />
           ))}
@@ -42,7 +42,7 @@ const MainPage = () => {
 
       <Footer />
 
-      <div className="fixed bottom-[74px] right-[20px]">
+      <div className="fixed bottom-[4.625rem] right-[1.25rem]">
         <GoodBotFAB />
       </div>
     </div>
