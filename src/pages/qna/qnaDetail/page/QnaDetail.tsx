@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import QnAHeader from '../components/QnAHeader';
 import QnAAnswer from '../components/QnAAnswer';
 import QnANotice from '../components/QnANotice';
-import { fetchQnaDetail } from '@/shared/apis/qna';
-import { getErrorMessage } from '@/shared/utils/errorHandler';
+import { fetchQnaDetail } from '@/shared/apis/qna/qnaDetail';
+import { getQnaErrorMessage } from '@/shared/apis/qna/error';
 
 const QnADetail = () => {
   const { id } = useParams<{ id?: string }>();
@@ -27,7 +27,7 @@ const QnADetail = () => {
 
   // 여기 나중에 바꿀 예정
   if (isLoading) return <div>로딩 중...</div>;
-  if (isError) return <div>{getErrorMessage(error)}</div>;
+  if (isError) return <div>{getQnaErrorMessage(error)}</div>;
   if (!qna) return <div>존재하지 않는 문서입니다.</div>;
 
   return (

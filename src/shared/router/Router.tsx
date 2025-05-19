@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
+import MainPage from '@/pages/main/page/MainPage';
+import MenuPage from '@/pages/menu/page/MenuPage';
 import ChatPage from '@/pages/chat/page/ChatPage';
-import QnAList from '@/pages/qna/qnaList/components/QnAList';
 import QnADetail from '@/pages/qna/qnaDetail/page/QnaDetail';
 import QnALayout from '@/pages/qna/page/QnALayout';
 import QnAMy from '@/pages/qna/qnaMy/page/QnAMy';
@@ -8,14 +9,12 @@ import QnAHome from '@/pages/qna/qnaList/page/QnAHome';
 
 const router = createBrowserRouter([
   {
-    // 메인 페이지로 변경
     path: '/',
-    // element: < />,
+    element: <MainPage />,
   },
   {
-    // 메뉴 페이지로 변경
     path: '/menu',
-    // element: < />,
+    element: <MenuPage />,
   },
   {
     path: '/chat',
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':id',
-        element: <QnaDetail />,
+        element: <QnADetail />,
       },
       {
         path: 'my',
