@@ -4,6 +4,7 @@ import { formatTime } from '@/shared/utils/date';
 import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 import ChatQuestionBox from './chatBox/ChatQuestionBox';
 import ChatUser from './user/ChatUser';
+import Button from './Button';
 
 interface ChatBodyProps {
   messages: string[];
@@ -43,9 +44,21 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
         <>
           <ChatUser message="상담 시작하기" time={getUserStartTime()} />
           <ChatQuestionBox />
-          {messages.map((msg, idx) => (
+
+          {[...messages].reverse().map((msg, idx) => (
             <ChatUser key={idx} message={msg} time={formatTime(new Date())} />
           ))}
+
+          {messages.length > 0 && (
+            <div className="flex justify-end mr-[1.25rem]">
+              <Button
+                label="다음 질문 받기"
+                variant="secondary"
+                onClick={() => console.log('다음 질문 로직')}
+              />
+            </div>
+          )}
+
           <div ref={scrollRef} />
         </>
       )}
