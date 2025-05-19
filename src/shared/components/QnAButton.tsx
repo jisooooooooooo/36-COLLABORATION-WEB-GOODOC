@@ -21,7 +21,7 @@ const QnAButton = ({
   position = '',
   bottom = '',
 }: QnAButtonProps) => {
-  const className = `flex justify-center items-center rounded-[8px] 
+  const className = `flex justify-center items-center rounded-[.5rem] 
     ${font} ${textColor} ${backgroundColor} ${width} ${px} ${py} ${position} ${bottom}`;
 
   return (
