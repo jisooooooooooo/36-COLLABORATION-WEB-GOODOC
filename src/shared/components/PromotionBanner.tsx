@@ -8,14 +8,18 @@ const PromotionBanner = () => {
 
   return (
     <div className="flex items-center gap-[.5rem] bg-Blue-1 px-[.75rem] py-[.6875rem]">
-      <button type="button" onClick={() => setVisible(false)}>
+      <button type="button" title="닫기 버튼" onClick={() => setVisible(false)}>
         <CloseIcon className="w-[1.5rem] h-[1.5rem]" />
       </button>
-      <img src={LogoAlert} className="w-[2.75rem] h-[2.75rem]" />
+      <img src={LogoAlert} alt="굿닥 로고" className="w-[2.75rem] h-[2.75rem]" />
       <div className="title-semi-14 text-Softblack">
         굿닥- 병원 접수, 병원 예약, 비대면 진료 필수 앱
       </div>
-      <button type="button" className="px-[1.625rem] py-[.5625rem] bg-Mainblue rounded-[.5rem]">
+      <button
+        type="button"
+        title="다운로드 버튼"
+        className="px-[1.625rem] py-[.5625rem] bg-Mainblue rounded-[.5rem]"
+      >
         <div className="title-semi-14 text-White text-nowrap">다운로드</div>
       </button>
     </div>
