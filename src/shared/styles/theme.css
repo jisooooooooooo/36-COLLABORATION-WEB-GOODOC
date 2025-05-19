@@ -104,6 +104,7 @@
   .caption-med-12 {
     @apply text-[12px] leading-[20px];
     font-weight: 500; /* medium */
+    letter-spacing: 0.03rem;
   }
 
   /* Main Colors */
@@ -180,4 +181,13 @@
 
   .text-White { color: #FFFFFF !important; }
   .bg-White { background-color: #FFFFFF !important; }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
