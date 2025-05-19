@@ -16,7 +16,7 @@ const QnAHome = () => {
   const { data: qnaPreviews, hasMore, loadMore } = usePagination(dummyQnaData, 5);
 
   return (
-    <div className="flex flex-col items-center mb-[2.25rem]">
+    <div className="flex flex-col mb-[2.25rem]">
       <DeptFilter />
       <MyQuestion />
       <QnAList qnaPreviews={qnaPreviews} />

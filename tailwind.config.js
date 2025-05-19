@@ -2,7 +2,7 @@ import scrollbarHide from 'tailwind-scrollbar-hide';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  // content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,css}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   safelist: ['font-bold', 'font-semibold', 'text-[1.5rem]', 'leading-[1.25rem]'],
   theme: {
     extend: {

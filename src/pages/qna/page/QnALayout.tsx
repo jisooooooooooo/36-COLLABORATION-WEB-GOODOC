@@ -4,7 +4,7 @@ import Footer from '@/shared/components/Footer';
 
 const QnALayout = () => {
   return (
-    <div className="flex flex-col mb-[9.1875rem]">
+    <div className="flex flex-col items-center mb-[9.1875rem]">
       <QnASearch />
       <main>
         <Outlet />
