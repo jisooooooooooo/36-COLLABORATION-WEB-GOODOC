@@ -8,7 +8,7 @@ interface QnAListItemProps {
   timeElapsed: string;
 }
 interface QnAListProps {
-  qnaPreviews: [QnAListItemProps];
+  qnaPreviews: QnAListItemProps[];
 }
 
 const QnAList = ({ qnaPreviews }: QnAListProps) => {
