@@ -37,7 +37,7 @@ const Footer = () => {
 
         <button
           type="button"
-          className="w-fit rounded-[.5rem] px-[1.25rem] py-[1rem] border border-[#ECEDF0]"
+          className="w-fit rounded-[.5rem] px-[1.25rem] py-[.5rem] border border-[#ECEDF0]"
         >
           <span className="title-bold-14 text-WGray">1:1 채팅상담</span>
         </button>
