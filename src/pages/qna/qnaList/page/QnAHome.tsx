@@ -8,7 +8,17 @@ const QnAHome = () => {
     <div className="flex flex-col justify-center items-center mb-[2.25rem]">
       <DeptFilter />
       <MyQuestion />
-      <QnAList />
+      <QnAList
+        qnaPreviews={[
+          {
+            id: 1,
+            summary: 'summary',
+            question: 'question',
+            timeElapsed: '3일 전',
+            department: 'department',
+          },
+        ]}
+      />
       <QnAButton
         text="질문 더보기"
         font="title-semi-16"
