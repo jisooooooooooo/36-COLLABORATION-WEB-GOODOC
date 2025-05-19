@@ -28,7 +28,7 @@ const QnADetail = () => {
   // 여기 나중에 바꿀 예정
   if (isLoading) return <div>로딩 중...</div>;
   if (isError) return <div>{getQnaErrorMessage(error)}</div>;
-  if (!qna) return <div>존재하지 않는 문서입니다.</div>;
+  if (!qna) return <div>존재하지 않는 질문입니다.</div>;
 
   return (
     <main className="flex flex-col items-center justify-center pt-[1.5rem]">
