@@ -26,10 +26,10 @@ const HospitalListItem = ({
 }: HospitalInfo) => {
   return (
     <div className="flex justify-between">
-      <div className="flex flex-col gap-[9px]">
+      <div className="flex flex-col gap-[.5625rem]">
         <span className="title-bold-18 text-SoftBlack">{name}</span>
-        <div className="flex flex-col gap-[5px]">
-          <div className="flex items-center gap-[13px]">
+        <div className="flex flex-col gap-[.3125rem]">
+          <div className="flex items-center gap-[.8125rem]">
             {isOpen && (
               <>
                 <span className="title-semi-14 text-SoftGreen">진료중</span>
@@ -38,13 +38,13 @@ const HospitalListItem = ({
             )}
             {!isOpen && <span className="title-semi-14 text-WGray-1">진료시간 병원 문의</span>}
           </div>
-          <div className="flex items-center gap-[14px]">
+          <div className="flex items-center gap-[.875rem]">
             <span className="title-bold-14 text-SoftBlack">{distance}km</span>
             <span className="title-med-14 text-WGray-1">{address}</span>
           </div>
         </div>
-        <div className="flex items-center gap-[13px]">
-          <div className="flex items-center gap-[2px]">
+        <div className="flex items-center gap-[.8125rem]">
+          <div className="flex items-center gap-[.125rem]">
             {review && (
               <>
                 <IconStarBlack />
@@ -62,9 +62,9 @@ const HospitalListItem = ({
         </div>
       </div>
       {image ? (
-        <img src={image} className="w-[76px] h-[76px]" />
+        <img src={image} className="w-[4.75rem] h-[4.75rem]" />
       ) : (
-        <img src={ImgHospitalEmpty} className="w-[76px] h-[76px]" />
+        <img src={ImgHospitalEmpty} className="w-[4.75rem] h-[4.75rem]" />
       )}
     </div>
   );
