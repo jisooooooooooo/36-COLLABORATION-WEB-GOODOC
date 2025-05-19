@@ -2,7 +2,7 @@ import ImageMark from '@shared/assets/svg/ImageMark.svg?react';
 
 const Footer = () => {
   return (
-    <footer className="w-full flex flex-col justify-start mt-[1.25rem] mb-[9.1875rem]">
+    <footer className="w-full flex flex-col justify-start mb-[9.1875rem]">
       <div className="w-full h-[.0625rem] border-t border-[#ECEDF0]"></div>
 
       <div className="flex flex-col mt-[5rem] ml-[1.25rem] gap-[2.25rem]">
