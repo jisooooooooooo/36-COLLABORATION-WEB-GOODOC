@@ -7,6 +7,7 @@ import IconCalendar from '@/shared/assets/svg/IconCalendar.svg';
 import MoreButton from '@/pages/main/components/MoreButton';
 import HospitalListItem from '@/pages/main/components/HospitalListItem';
 import Footer from '@/shared/components/Footer';
+import GoodBotFAB from '@/pages/main/components/GoodBotFAB';
 import { dummyHospitals } from '@/shared/constants/hospitals';
 import { usePagination } from '@/pages/main/hooks/UsePagination';
 
@@ -38,6 +39,10 @@ const MainPage = () => {
       </section>
 
       <Footer />
+
+      <div className="fixed bottom-[74px] right-[20px]">
+        <GoodBotFAB />
+      </div>
     </div>
   );
 };
