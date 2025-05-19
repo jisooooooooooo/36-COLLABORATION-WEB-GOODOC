@@ -2,13 +2,10 @@ import DeptFilter from '@pages/qna/qnaList/components/DeptFilter';
 import QnAList from '@pages/qna/qnaList/components/QnAList';
 import QnAButton from '@/shared/components/QnAButton';
 import MyQuestion from '../components/MyQuestion';
-import QnASearch from '../components/QnASearch';
-import Footer from '@/shared/components/Footer';
 
 const QnAHome = () => {
   return (
-    <div className="flex flex-col justify-center items-center mb-[6.25rem]">
-      <QnASearch />
+    <div className="flex flex-col justify-center items-center mb-[2.25rem]">
       <DeptFilter />
       <MyQuestion />
       <QnAList />
@@ -21,7 +18,6 @@ const QnAHome = () => {
         px="px-[7.5rem]"
         py="py-[1rem]"
       />
-      <Footer />
       <QnAButton
         text="질문하기"
         font="title-semi-16"
