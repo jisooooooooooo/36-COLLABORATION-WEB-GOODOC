@@ -35,7 +35,7 @@ const MainPage = () => {
             <HospitalListItem key={hospital.id} {...hospital} />
           ))}
         </div>
-        <MoreButton onClick={loadMore} disabled={!hasMore} />
+        {hasMore && <MoreButton onClick={loadMore} />}
       </section>
 
       <Footer />
