@@ -35,8 +35,8 @@ const ChatWelcomeBox: React.FC<ChatWelcomeBoxProps> = ({ onStart }) => {
             <p className="title-bold-14">먼저 원하시는 서비스를 선택해주세요.</p>
 
             <div className="flex gap-[.75rem] mt-[1rem] justify-center w-full">
-              <Button label="Q&A 확인하기" onClick={() => {}} variant="secondary" />
-              <Button label="상담 시작하기" onClick={onStart} variant="primary" />
+              <Button label="Q&A 확인하기" onClick={() => {}} variant="primary" />
+              <Button label="상담 시작하기" onClick={onStart} variant="secondary" />
             </div>
           </>
         }

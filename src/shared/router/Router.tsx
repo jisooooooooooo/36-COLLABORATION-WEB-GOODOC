@@ -2,6 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import ChatPage from '@/pages/chat/page/ChatPage';
 import QnAList from '@/pages/qna/qnaList/components/QnAList';
 import QnADetail from '@/pages/qna/qnaDetail/page/QnaDetail';
+import QnALayout from '@/pages/qna/page/QnALayout';
+import QnAMy from '@/pages/qna/qnaMy/page/QnAMy';
+import QnAHome from '@/pages/qna/qnaList/page/QnAHome';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +23,22 @@ const router = createBrowserRouter([
   },
   {
     path: '/qna',
-    element: <QnAList />,
-  },
-  {
-    path: '/qna/:id',
-    element: <QnADetail />,
+
+    element: <QnALayout />,
+    children: [
+      {
+        index: true, // 기본 하위 라우트
+        element: <QnAHome />,
+      },
+      {
+        path: ':id',
+        element: <QnaDetail />,
+      },
+      {
+        path: 'my',
+        element: <QnAMy />,
+      },
+    ],
   },
 ]);
 
