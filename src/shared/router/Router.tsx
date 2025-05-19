@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ChatPage from '@/pages/chat/page/ChatPage';
-import QnAList from '@/pages/qna/qnaList/components/QnAList';
 import QnADetail from '@/pages/qna/qnaDetail/page/QnaDetail';
 import QnALayout from '@/pages/qna/page/QnALayout';
 import QnAMy from '@/pages/qna/qnaMy/page/QnAMy';
@@ -32,7 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':id',
-        element: <QnaDetail />,
+        element: <QnADetail />,
       },
       {
         path: 'my',
