@@ -14,7 +14,7 @@ const SelectableButton: React.FC<SelectableButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`w-[115px] h-[40px] p-[10px] title-semi-14 leading-none rounded-[4px]
+      className={`w-[7.1875rem] h-[2.5rem] p-[.625rem] title-semi-14 leading-none rounded-[.25rem]
       ${isSelected ? 'bg-Blue-3 text-Mainblue border border-Mainblue' : 'bg-White text-WGray border border-WGray-2'}`}
     >
       {label}

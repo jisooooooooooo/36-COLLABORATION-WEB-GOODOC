@@ -1,10 +1,13 @@
+import { useRef } from 'react';
+import { formatTime } from '@/shared/utils/date';
 import { useSelectableOption } from '@pages/chat/hooks/useSelectableOption';
-import ChatBubbleBot from '@pages/chat/components/chatBot/ChatBubbleBot';
-import SelectableButton from '@pages/chat/components/chatBot/SelectableButton';
+import ChatBubbleBot from '@/pages/chat/components/ChatBubbleBot';
+import SelectableButton from '@/pages/chat/components/SelectableButton';
 
 const options = ['없음', '임신 가능성', '복약중인 약', '주의할 약', '만성질환', '기타'];
 
 const ChatConsiderationBox = () => {
+  const timeRef = useRef(formatTime(new Date()));
   const { setSelectedLabel, isSelected } = useSelectableOption('없음');
 
   return (
@@ -26,7 +29,7 @@ const ChatConsiderationBox = () => {
           </div>
         </div>
       }
-      time="오후 10:20"
+       time={timeRef.current}
     />
   );
 };
