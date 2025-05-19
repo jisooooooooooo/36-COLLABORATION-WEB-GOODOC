@@ -17,7 +17,7 @@ const MyQuestion = () => {
       <span className="title-semi-18 text-CGray">내 질문</span>
       <div className="flex gap-[.25rem] items-end">
         <span className="title-semi-18 text-CGray">0</span>
-        <ForwardArrow className="w-[1.5rem] h-[1.5rem] mb-[1px]" />
+        <ForwardArrow className="w-[1.5rem] h-[1.5rem] mb-[.0625rem]" />
       </div>
     </button>
   );
