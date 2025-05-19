@@ -13,7 +13,7 @@ const QnASearch = () => {
   };
 
   return (
-    <div className="flex justify-between items-center mt-[1.5rem] gap-[4px] w-[20.9375rem]">
+    <div className="flex mt-[1.5rem] ml-[17px] gap-[4px] w-[20.9375rem]">
       <button type="button" onClick={handleClick}>
         <BackArrow className="w-[2.25rem] h-[2.25rem]" />
       </button>
