@@ -63,6 +63,7 @@
   .body-med-14 {
     @apply text-[.875rem] leading-[1.25rem];
     font-weight: 500; /* medium */
+    letter-spacing: -0.035rem;
   }
 
   .body-reg-14 {
@@ -104,9 +105,10 @@
   .caption-med-12 {
     @apply text-[.75rem] leading-[1.25rem];
     font-weight: 500; /* medium */
+    letter-spacing: 0.03rem;
   }
 
-  /* Main Colors */
+ /* Main Colors */
 .text-Mainblue { color: #0073F9 !important; }
 .bg-Mainblue { background-color: #0073F9 !important; }
 .border-Mainblue { border: 1px solid #0073F9 !important; }
@@ -204,4 +206,12 @@
 .text-White { color: #FFFFFF !important; }
 .bg-White { background-color: #FFFFFF !important; }
 .border-White { border: 1px solid #FFFFFF !important; }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

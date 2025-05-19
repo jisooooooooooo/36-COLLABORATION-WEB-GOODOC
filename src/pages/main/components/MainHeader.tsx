@@ -23,7 +23,9 @@ const MainHeader = () => {
           </div>
         )}
       </div>
-      <IconMenu className="w-[2.25rem] h-[2.25rem]" />
+      <button type="button" className="border-none">
+        <IconMenu className="w-[2.25rem] h-[2.25rem]" />
+      </button>
     </header>
   );
 };
