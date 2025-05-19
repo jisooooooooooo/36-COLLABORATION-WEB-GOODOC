@@ -1,9 +1,10 @@
-import ChatPage from './pages/chat/page/ChatPage';
+import { RouterProvider } from 'react-router';
+import router from './shared/router/Router';
 
 function App() {
   return (
     <>
-      <ChatPage />
+      <RouterProvider router={router} />
     </>
   );
 }
