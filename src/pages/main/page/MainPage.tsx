@@ -8,6 +8,7 @@ import MoreButton from '@/pages/main/components/MoreButton';
 import HospitalListItem from '@/pages/main/components/HospitalListItem';
 import Footer from '@/shared/components/Footer';
 import GoodBotFAB from '@/pages/main/components/GoodBotFAB';
+import PromotionBanner from '@/shared/components/PromotionBanner';
 import { dummyHospitals } from '@/shared/constants/hospitals';
 import { usePagination } from '@/pages/main/hooks/UsePagination';
 
@@ -16,8 +17,9 @@ const MainPage = () => {
 
   return (
     <div>
+      <PromotionBanner />
       <div className="flex flex-col gap-[16px]">
-        <div className="flex flex-col gap-[24px] pt-[4px] px-[20px]">
+        <div className="flex flex-col gap-[24px] pt-[12px] px-[20px]">
           <MainHeader />
           <LocationCategoryFilter />
         </div>
