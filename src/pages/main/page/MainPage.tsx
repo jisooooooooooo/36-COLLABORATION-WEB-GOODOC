@@ -8,8 +8,11 @@ import MoreButton from '@/pages/main/components/MoreButton';
 import HospitalListItem from '@/pages/main/components/HospitalListItem';
 import Footer from '@/shared/components/Footer';
 import { dummyHospitals } from '@/shared/constants/hospitals';
+import { usePagination } from '@/pages/main/hooks/UsePagination';
 
 const MainPage = () => {
+  const { data: hospitals, hasMore, loadMore } = usePagination(dummyHospitals, 7);
+
   return (
     <div>
       <div className="flex flex-col gap-[16px]">
@@ -27,11 +30,11 @@ const MainPage = () => {
 
       <section className="flex flex-col gap-[80px] px-[20px] mt-[48px] mb-[36px]">
         <div className="flex flex-col gap-[48px]">
-          {dummyHospitals.map(hospital => (
+          {hospitals.map(hospital => (
             <HospitalListItem key={hospital.id} {...hospital} />
           ))}
         </div>
-        <MoreButton />
+        <MoreButton onClick={loadMore} disabled={!hasMore} />
       </section>
 
       <Footer />
