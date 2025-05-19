@@ -5,9 +5,13 @@ import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 import ChatQuestionBox from './chatBox/ChatQuestionBox';
 import ChatUser from './user/ChatUser';
 
+interface ChatBodyProps {
+  messages: string[];
+}
+
 const NOTICE_MESSAGE = '익명으로 공개하니 안심하세요';
 
-const ChatBody: React.FC = () => {
+const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [chatStep, setChatStep] = useState<'initial' | 'started'>('initial');
 
   const userStartTimeRef = useRef<string | null>(null);
@@ -21,10 +25,10 @@ const ChatBody: React.FC = () => {
   const getUserStartTime = () => userStartTimeRef.current ?? formatTime(new Date());
 
   useEffect(() => {
-    if (chatStep === 'started' && scrollRef.current) {
+    if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [chatStep]);
+  }, [messages]);
 
   return (
     <section className="bg-CGray-8 min-h-full flex flex-col pt-[3.25rem] pb-[5rem] gap-[1.5rem]">
@@ -39,6 +43,9 @@ const ChatBody: React.FC = () => {
         <>
           <ChatUser message="상담 시작하기" time={getUserStartTime()} />
           <ChatQuestionBox />
+          {messages.map((msg, idx) => (
+            <ChatUser key={idx} message={msg} time={formatTime(new Date())} />
+          ))}
           <div ref={scrollRef} />
         </>
       )}
