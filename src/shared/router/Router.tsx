@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ChatPage from '@/pages/chat/page/ChatPage';
-import QnAList from '@/pages/qna/qnaList/components/QnA/QnAList';
+import QnAList from '@/pages/qna/qnaList/components/QnAList';
 import QnADetail from '@/pages/qna/qnaDetail/page/QnaDetail';
 
 const router = createBrowserRouter([

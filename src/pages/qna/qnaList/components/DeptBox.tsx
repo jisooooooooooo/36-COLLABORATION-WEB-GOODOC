@@ -13,7 +13,9 @@ const DeptBox = ({ deptName, isSelected, onBoxClick }: DeptBoxProps) => {
       `}
       onClick={onBoxClick}
     >
-      <span className="title-semi-14 text-WGray">{deptName}</span>
+      <span className="title-semi-14 text-WGray whitespace-nowrap overflow-hidden text-ellipsis">
+        {deptName}
+      </span>
     </button>
   );
 };
