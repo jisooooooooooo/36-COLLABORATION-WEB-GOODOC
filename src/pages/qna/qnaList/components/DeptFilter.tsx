@@ -11,14 +11,14 @@ const DeptFilter = () => {
 
   const motionValue = {
     initial: { height: 0, opacity: 0 },
-    end: { height: 'auto', opacity: 1 },
+    animate: { height: 'auto', opacity: 1 },
     exit: { height: 0, opacity: 0 },
   };
 
   return (
     <div className="flex flex-col w-[20.9375rem] mt-[2.25rem]">
       <button type="button" className="flex" onClick={toggleDeptList}>
-        <span className="title-bold-20 text-CGray-1 mr-[4px]">진료과 전체</span>
+        <span className="title-bold-20 text-CGray-1 mr-[.25rem]">진료과 전체</span>
         <Chevron
           className={`transition-transform duration-300 ${!showDeptList ? 'rotate-180' : 'rotate-0'}`}
         />
@@ -30,7 +30,7 @@ const DeptFilter = () => {
           <motion.div
             variants={motionValue}
             initial="initial"
-            animate="end"
+            animate="animate"
             exit="exit"
             transition={{ duration: 0.3 }}
           >
