@@ -3,7 +3,11 @@ import LogoHeader from '@/shared/assets/images/Logoheader.png';
 import IconMenu from '@/shared/assets/svg/IconMenu.svg?react';
 import IconSearch from '@/shared/assets/svg/IconSearch.svg?react';
 
-const MainHeader = () => {
+interface MainHeaderProps {
+  onClick: () => void;
+}
+
+const MainHeader = ({ onClick }: MainHeaderProps) => {
   const [query, setQuery] = useState('');
 
   return (
@@ -23,7 +27,7 @@ const MainHeader = () => {
           </div>
         )}
       </div>
-      <button type="button" className="border-none">
+      <button type="button" onClick={onClick} className="border-none">
         <IconMenu className="w-[2.25rem] h-[2.25rem]" />
       </button>
     </header>

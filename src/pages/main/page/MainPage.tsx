@@ -11,16 +11,27 @@ import GoodBotFAB from '@/pages/main/components/GoodBotFAB';
 import PromotionBanner from '@/shared/components/PromotionBanner';
 import { dummyHospitals } from '@/shared/constants/hospitals';
 import { usePagination } from '@/pages/main/hooks/UsePagination';
+import { useNavigate } from 'react-router';
 
 const MainPage = () => {
   const { data: hospitals, hasMore, loadMore } = usePagination(dummyHospitals, 7);
+
+  const navigate = useNavigate();
+
+  const handleMenuClick = () => {
+    navigate('/menu');
+  };
+
+  const handleGoodBotClick = () => {
+    navigate('/chat');
+  };
 
   return (
     <div>
       <PromotionBanner />
       <div className="flex flex-col gap-[1rem]">
         <div className="flex flex-col gap-[1.5rem] pt-[.75rem] px-[1.25rem]">
-          <MainHeader />
+          <MainHeader onClick={handleMenuClick} />
           <LocationCategoryFilter />
         </div>
         <div className="flex overflow-x-auto scrollbar-hide gap-[.5rem] px-[1.25rem]">
@@ -43,7 +54,7 @@ const MainPage = () => {
       <Footer />
 
       <div className="fixed bottom-[4.625rem] right-[1.25rem]">
-        <GoodBotFAB />
+        <GoodBotFAB onClick={handleGoodBotClick} />
       </div>
     </div>
   );
