@@ -55,7 +55,7 @@ const ChatImageBox = () => {
         />
 
         {images.length > 0 && (
-          <div className="mt-[.75rem] px-[1rem]">
+          <div className="mt-[.75rem] px-[1.25rem]">
             <ImagePreviewList images={images} />
           </div>
         )}

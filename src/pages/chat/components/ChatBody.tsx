@@ -6,6 +6,7 @@ import ChatQuestionBox from './chatBox/ChatQuestionBox';
 import ChatUser from './user/ChatUser';
 import Button from './Button';
 import ChatConsiderationBox from './chatBox/ChatConsiderationBox';
+import ChatImageBox from './chatBox/ChatImageBox';
 
 interface ChatBodyProps {
   messages: string[];
@@ -16,6 +17,8 @@ const NOTICE_MESSAGE = '익명으로 공개하니 안심하세요';
 const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [chatStep, setChatStep] = useState<'initial' | 'started'>('initial');
   const [showNextQuestion, setShowNextQuestion] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [showImageBox, setShowImageBox] = useState(false);
 
   const userStartTimeRef = useRef<string | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -60,7 +63,20 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
               />
             </div>
           )}
-          {showNextQuestion && <ChatConsiderationBox />}
+          {showNextQuestion && (
+            <ChatConsiderationBox
+              onSelect={option => {
+                if (!selectedOption) {
+                  setSelectedOption(option);
+                  setTimeout(() => setShowImageBox(true), 500);
+                }
+              }}
+            />
+          )}
+
+          {selectedOption && <ChatUser message={selectedOption} time={formatTime(new Date())} />}
+
+          {showImageBox && <ChatImageBox />}
 
           <div ref={scrollRef} />
         </>

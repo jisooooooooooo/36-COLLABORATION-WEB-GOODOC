@@ -4,11 +4,20 @@ import { useSelectableOption } from '../../hooks/useSelectableOption';
 import ChatBubbleBot from './ChatBubbleBot';
 import SelectableButton from '@/pages/chat/components/SelectableButton';
 
+interface ChatConsiderationBoxProps {
+  onSelect: (value: string) => void;
+}
+
 const options = ['없음', '임신 가능성', '복약중인 약', '주의할 약', '만성질환', '기타'];
 
-const ChatConsiderationBox = () => {
+const ChatConsiderationBox: React.FC<ChatConsiderationBoxProps> = ({ onSelect }) => {
   const timeRef = useRef(formatTime(new Date()));
   const { setSelectedLabel, isSelected } = useSelectableOption('없음');
+
+  const handleSelect = (label: string) => {
+    setSelectedLabel(label);
+    onSelect(label);
+  };
 
   return (
     <ChatBubbleBot
@@ -23,7 +32,7 @@ const ChatConsiderationBox = () => {
                 key={label}
                 label={label}
                 isSelected={isSelected(label)}
-                onClick={() => setSelectedLabel(label)}
+                onClick={() => handleSelect(label)}
               />
             ))}
           </div>
