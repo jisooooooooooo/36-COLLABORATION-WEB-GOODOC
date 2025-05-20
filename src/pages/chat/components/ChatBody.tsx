@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { useUserStartTime } from '../hooks/useUserStartTime';
+import { useAutoScrollToBottom } from '../hooks/useAutoScrollToBottom';
 import Alert from '@shared/assets/svg/chatAlert.svg?react';
-import { formatTime } from '@/shared/utils/date';
 import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 import ChatQuestionBox from './chatBox/ChatQuestionBox';
 import ChatUser from './user/ChatUser';
-import Button from './Button';
 import ChatConsiderationBox from './chatBox/ChatConsiderationBox';
 import ChatImageBox from './chatBox/ChatImageBox';
+import NextQuestionButton from './NextQuestionButton';
 
 interface ChatBodyProps {
   messages: string[];
@@ -22,29 +23,26 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [hasUploadedImage, setHasUploadedImage] = useState(false);
   const [imageCount, setImageCount] = useState(0);
 
-  const userStartTimeRef = useRef<string | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const { getStartTime, setStartTime } = useUserStartTime();
 
   const handleStart = () => {
-    userStartTimeRef.current = formatTime(new Date());
+    setStartTime();
     setChatStep('started');
   };
 
-  const getUserStartTime = () => userStartTimeRef.current ?? formatTime(new Date());
+  useAutoScrollToBottom(scrollRef, [
+    messages,
+    selectedOption,
+    hasUploadedImage,
+    imageCount,
+    showImageBox,
+    showNextQuestion,
+  ]);
 
-  useEffect(() => {
-    const scrollToBottom = () => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    };
-
-    const timeout = setTimeout(() => {
-      requestAnimationFrame(scrollToBottom);
-    }, 0);
-
-    return () => clearTimeout(timeout);
-  }, [messages, selectedOption, hasUploadedImage, imageCount, showImageBox, showNextQuestion]);
+  const handleNextQuestionClick = () => {
+    console.log('다음 질문 진행');
+  };
 
   return (
     <section className="bg-CGray-8 min-h-full flex flex-col pt-[3.25rem] gap-[1.5rem]">
@@ -57,21 +55,15 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
 
       {chatStep === 'started' && (
         <>
-          <ChatUser message="상담 시작하기" time={getUserStartTime()} />
+          <ChatUser message="상담 시작하기" time={getStartTime()} />
           <ChatQuestionBox />
 
           {[...messages].reverse().map((msg, idx) => (
-            <ChatUser key={idx} message={msg} time={formatTime(new Date())} />
+            <ChatUser key={idx} message={msg} time={getStartTime()} />
           ))}
 
-          {messages.length > 0 && !showNextQuestion && (
-            <div className="flex justify-end mr-[1.25rem]">
-              <Button
-                label="다음 질문 받기"
-                variant="secondary"
-                onClick={() => setShowNextQuestion(true)}
-              />
-            </div>
+          {!showNextQuestion && messages.length > 0 && (
+            <NextQuestionButton onClick={() => setShowNextQuestion(true)} />
           )}
 
           {showNextQuestion && (
@@ -86,7 +78,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
             />
           )}
 
-          {selectedOption && <ChatUser message={selectedOption} time={formatTime(new Date())} />}
+          {selectedOption && <ChatUser message={selectedOption} time={getStartTime()} />}
 
           {showImageBox && (
             <>
@@ -94,26 +86,15 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
                 onImageUpload={() => setHasUploadedImage(true)}
                 onImageCountChange={count => {
                   setImageCount(count);
-                  if (count === 3) {
-                    console.log('이미지 3장 업로드 완료!');
-                  }
+                  if (count === 3) console.log('이미지 3장 업로드 완료!');
                 }}
               />
-
-              {/* 이미지 업로드 후 */}
               {hasUploadedImage && imageCount < 3 && (
-                <div className="flex justify-end mr-[1.25rem]">
-                  <Button
-                    label="다음 질문 받기"
-                    variant="secondary"
-                    onClick={() => {
-                      console.log('다음 질문 진행');
-                    }}
-                  />
-                </div>
+                <NextQuestionButton onClick={handleNextQuestionClick} />
               )}
             </>
           )}
+
           <div ref={scrollRef} />
         </>
       )}
