@@ -14,7 +14,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ open, onClose, onContinue }) => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-Overlay w-[23.4375rem] h-[100%]">
+    <div className="fixed inset-0 z-20 flex items-center justify-center bg-Overlay w-[23.4375rem] h-[100%]">
       <div className="w-[17.8125rem] bg-White rounded-[0.75rem] py-[1.25rem] flex flex-col items-center">
         <div className="text-center">
           <h2 className="Title_semi_18 text-CGray-2">지금 상담을 그만하시겠어요?</h2>
