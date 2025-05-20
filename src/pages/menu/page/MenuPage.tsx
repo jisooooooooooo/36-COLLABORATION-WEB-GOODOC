@@ -6,11 +6,22 @@ import MenuButton from '@/pages/menu/components/MenuButton';
 import HospitalIcon from '@/shared/assets/svg/IconHospitalLine.svg';
 import TalkIcon from '@/shared/assets/svg/IconTalk.svg';
 import QnaIcon from '@/shared/assets/svg/IconQna.svg';
+import { useNavigate } from 'react-router';
 
 const MenuPage = () => {
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate('/');
+  };
+
+  const handleQnAClick = () => {
+    navigate('/qna');
+  };
+
   return (
     <div className="h-screen flex flex-col pt-[1.5rem] px-[1.25rem]">
-      <button type="button">
+      <button onClick={handleBackClick} type="button">
         <BackArrowIcon />
       </button>
       <img src={LogoText} className="w-[6.25rem] h-[2rem] mt-[1rem] mb-[3rem]" />
@@ -21,7 +32,7 @@ const MenuPage = () => {
       <div className="flex flex-col gap-[1.5rem] mt-[2rem]">
         <MenuButton icon={HospitalIcon} name="병원 찾기" />
         <MenuButton icon={TalkIcon} name="AI 건강 상담" />
-        <MenuButton icon={QnaIcon} name="Q&A" />
+        <MenuButton icon={QnaIcon} name="Q&A" onClick={handleQnAClick} />
       </div>
     </div>
   );
