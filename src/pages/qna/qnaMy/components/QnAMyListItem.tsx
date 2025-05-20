@@ -8,18 +8,22 @@ interface QnAHeaderProps {
 }
 
 const QnAMyListItem = ({ department, title, keyword, date }: QnAHeaderProps) => {
+  const handleOnClick = () => {
+    console.log('Clicked2');
+  };
+
   return (
-    <div>
+    <button type="button" onClick={handleOnClick}>
       <article className="w-[20.9375rem] mb-[3rem]">
         <header className="mb-[1rem] flex items-center gap-[0.5rem]">
           <span className="caption-semi-13 text-CGray-4">{department}</span>
           <Ellipsis className="h-[0.125rem] w-[0.125rem]" />
           <span className="caption-reg-13 text-CGray-4">{date}</span>
         </header>
-        <div className="mb-[.5rem] title-semi-18 text-CGray-1">{title}</div>
-        <div className="body-reg-14 text-CGray-4">{keyword}</div>
+        <div className="mb-[.5rem] title-semi-18 text-CGray-1 text-start">{title}</div>
+        <div className="body-reg-14 text-CGray-4 text-start">{keyword}</div>
       </article>
-    </div>
+    </button>
   );
 };
 
