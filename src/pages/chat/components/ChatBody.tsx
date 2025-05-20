@@ -33,13 +33,21 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const getUserStartTime = () => userStartTimeRef.current ?? formatTime(new Date());
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages]);
+    const scrollToBottom = () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      requestAnimationFrame(scrollToBottom);
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, [messages, selectedOption, hasUploadedImage, imageCount, showImageBox, showNextQuestion]);
 
   return (
-    <section className="bg-CGray-8 min-h-full flex flex-col pt-[3.25rem] pb-[5rem] gap-[1.5rem]">
+    <section className="bg-CGray-8 min-h-full flex flex-col pt-[3.25rem] gap-[1.5rem]">
       <div className="flex items-center py-[.94rem] pl-[1rem] gap-[.25rem]">
         <Alert className="w-[1rem] h-[1rem]" aria-hidden="true" />
         <p className="title-semi-14 text-Mainblue">{NOTICE_MESSAGE}</p>
