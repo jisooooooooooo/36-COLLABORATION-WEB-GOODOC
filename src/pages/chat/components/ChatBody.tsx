@@ -71,6 +71,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
                   setTimeout(() => setShowImageBox(true), 500);
                 }
               }}
+              disabled={!!selectedOption}
             />
           )}
 

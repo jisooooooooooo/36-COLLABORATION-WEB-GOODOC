@@ -6,11 +6,12 @@ import SelectableButton from '@/pages/chat/components/SelectableButton';
 
 interface ChatConsiderationBoxProps {
   onSelect: (value: string) => void;
+  disabled?: boolean;
 }
 
 const options = ['없음', '임신 가능성', '복약중인 약', '주의할 약', '만성질환', '기타'];
 
-const ChatConsiderationBox: React.FC<ChatConsiderationBoxProps> = ({ onSelect }) => {
+const ChatConsiderationBox: React.FC<ChatConsiderationBoxProps> = ({ onSelect, disabled }) => {
   const timeRef = useRef(formatTime(new Date()));
   const { setSelectedLabel, isSelected } = useSelectableOption('없음');
 
@@ -32,7 +33,7 @@ const ChatConsiderationBox: React.FC<ChatConsiderationBoxProps> = ({ onSelect })
                 key={label}
                 label={label}
                 isSelected={isSelected(label)}
-                onClick={() => handleSelect(label)}
+                onClick={() => !disabled && handleSelect(label)}
               />
             ))}
           </div>
