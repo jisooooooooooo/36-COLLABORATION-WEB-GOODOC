@@ -2,7 +2,7 @@ import QnAListItem from './QnAListItem';
 
 interface QnAListItemProps {
   id: number;
-  question: string;
+  title: string;
   summary: string;
   department: string;
   timeElapsed: string;
@@ -14,12 +14,11 @@ interface QnAListProps {
 const QnAList = ({ qnaPreviews }: QnAListProps) => {
   return (
     <div className="flex flex-col gap-[3rem] mb-[5rem]">
-      {/* {Array.from({ length: 8 }).map((_, idx) => ( */}
       {qnaPreviews.map(qna => (
         <QnAListItem
           key={qna.id}
           department={qna.department}
-          question={qna.question}
+          title={qna.title}
           timeElapsed={qna.timeElapsed}
           summary={qna.summary}
         />

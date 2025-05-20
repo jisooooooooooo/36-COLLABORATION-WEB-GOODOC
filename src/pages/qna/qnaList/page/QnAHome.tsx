@@ -3,23 +3,39 @@ import QnAList from '@pages/qna/qnaList/components/QnAList';
 import QnAButton from '@/shared/components/QnAButton';
 import MyQuestion from '../components/MyQuestion';
 import { usePagination } from '@/pages/main/hooks/UsePagination';
+import { useQuery } from '@tanstack/react-query';
+import { fetchQnAList, type QnAHomeResponse } from '@/shared/apis/qna/qnaHome';
+import { getQnaErrorMessage } from '@/shared/apis/qna/error';
 
-const dummyQnaData = Array.from({ length: 20 }, (_, i) => ({
-  id: i + 1,
-  summary: `요약 ${i + 1}`,
-  question: `질문 내용 ${i + 1}`,
-  timeElapsed: `${i + 1}일 전`,
-  department: `진료과 ${i + 1}`,
-}));
+// const dummyQnaData = Array.from({ length: 20 }, (_, i) => ({
+//   id: i + 1,
+//   summary: `요약 ${i + 1}`,
+//   question: `질문 내용 ${i + 1}`,
+//   timeElapsed: `${i + 1}일 전`,
+//   department: `진료과 ${i + 1}`,
+// }));
 
 const QnAHome = () => {
-  const { data: qnaPreviews, hasMore, loadMore } = usePagination(dummyQnaData, 5);
+  const {
+    data: qnaList,
+    isLoading,
+    isError,
+    error,
+  } = useQuery<QnAHomeResponse>({
+    queryKey: ['qnaList'],
+    queryFn: fetchQnAList,
+  });
+
+  const { data, hasMore, loadMore } = usePagination(qnaList?.qnaPreviews ?? [], 3);
+
+  if (isLoading) return <span>로딩 중...</span>;
+  if (isError) return <div>{getQnaErrorMessage(error)}</div>;
 
   return (
     <div className="flex flex-col mb-[2.25rem]">
       <DeptFilter />
       <MyQuestion />
-      <QnAList qnaPreviews={qnaPreviews} />
+      <QnAList qnaPreviews={data} />
       {hasMore && (
         <QnAButton
           text="질문 더보기"
