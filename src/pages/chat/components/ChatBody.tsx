@@ -19,6 +19,8 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [showNextQuestion, setShowNextQuestion] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showImageBox, setShowImageBox] = useState(false);
+  const [hasUploadedImage, setHasUploadedImage] = useState(false);
+  const [imageCount, setImageCount] = useState(0);
 
   const userStartTimeRef = useRef<string | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -54,7 +56,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
             <ChatUser key={idx} message={msg} time={formatTime(new Date())} />
           ))}
 
-          {messages.length > 0 && (
+          {messages.length > 0 && !showNextQuestion && (
             <div className="flex justify-end mr-[1.25rem]">
               <Button
                 label="다음 질문 받기"
@@ -63,6 +65,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
               />
             </div>
           )}
+
           {showNextQuestion && (
             <ChatConsiderationBox
               onSelect={option => {
@@ -77,8 +80,32 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
 
           {selectedOption && <ChatUser message={selectedOption} time={formatTime(new Date())} />}
 
-          {showImageBox && <ChatImageBox />}
+          {showImageBox && (
+            <>
+              <ChatImageBox
+                onImageUpload={() => setHasUploadedImage(true)}
+                onImageCountChange={count => {
+                  setImageCount(count);
+                  if (count === 3) {
+                    console.log('이미지 3장 업로드 완료!');
+                  }
+                }}
+              />
 
+              {/* 이미지 업로드 후 */}
+              {hasUploadedImage && imageCount < 3 && (
+                <div className="flex justify-end mr-[1.25rem]">
+                  <Button
+                    label="다음 질문 받기"
+                    variant="secondary"
+                    onClick={() => {
+                      console.log('다음 질문 진행');
+                    }}
+                  />
+                </div>
+              )}
+            </>
+          )}
           <div ref={scrollRef} />
         </>
       )}

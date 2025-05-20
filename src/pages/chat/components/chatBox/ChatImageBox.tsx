@@ -5,7 +5,12 @@ import Toast from '@/pages/chat/components/Toast';
 import ImagePreviewList from '@/pages/chat/components/user/ImagePreviewList';
 import { formatTime } from '@/shared/utils/date';
 
-const ChatImageBox = () => {
+interface ChatImageBoxProps {
+  onImageUpload?: () => void;
+  onImageCountChange?: (count: number) => void;
+}
+
+const ChatImageBox: React.FC<ChatImageBoxProps> = ({ onImageUpload, onImageCountChange }) => {
   const timeRef = useRef(formatTime(new Date()));
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -26,12 +31,22 @@ const ChatImageBox = () => {
 
     const selectedFiles = Array.from(files);
 
-    if (selectedFiles.length + images.length > 3) {
+    const newImages = [...images, ...selectedFiles];
+
+    if (newImages.length > 3) {
       setShowToast(true);
       return;
     }
 
-    setImages(prev => [...prev, ...selectedFiles]);
+    if (selectedFiles.length > 0 && onImageUpload) {
+      onImageUpload();
+    }
+
+    setImages(newImages);
+
+    if (onImageCountChange) {
+      onImageCountChange(newImages.length);
+    }
   };
 
   return (
