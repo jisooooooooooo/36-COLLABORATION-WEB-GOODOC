@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useUserStartTime } from '../hooks/useUserStartTime';
 import { useAutoScrollToBottom } from '../hooks/useAutoScrollToBottom';
 import { NOTICE_MESSAGE, START_MESSAGE } from '@shared/constants/chatMessages';
@@ -10,6 +10,11 @@ import ChatImageBox from './chatBox/ChatImageBox';
 import ChatUser from './user/ChatUser';
 import NextQuestionButton from './NextQuestionButton';
 
+interface Message {
+  text: string;
+  timestamp: string;
+}
+
 interface ChatBodyProps {
   messages: string[];
 }
@@ -18,14 +23,17 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [chatStep, setChatStep] = useState<'initial' | 'started'>('initial');
   const [showNextQuestion, setShowNextQuestion] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOptionTime, setSelectedOptionTime] = useState<string>('');
   const [hasUploadedImage, setHasUploadedImage] = useState(false);
   const [imageCount, setImageCount] = useState(0);
+  const [formattedMessages, setFormattedMessages] = useState<Message[]>([]);
+  const prevMessagesLengthRef = useRef<number>(0);
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const { getStartTime, setStartTime } = useUserStartTime();
+  const { getStartTime, setStartTime, getCurrentTime } = useUserStartTime();
 
   useAutoScrollToBottom(scrollRef, [
-    messages,
+    formattedMessages,
     selectedOption,
     hasUploadedImage,
     imageCount,
@@ -44,12 +52,26 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const handleSelectOption = (option: string) => {
     if (!selectedOption) {
       setSelectedOption(option);
+      setSelectedOptionTime(getCurrentTime());
     }
   };
 
+  useEffect(() => {
+    if (messages.length > prevMessagesLengthRef.current) {
+      const newMessages = messages.slice(prevMessagesLengthRef.current);
+      const newFormattedMessages = newMessages.map(msg => ({
+        text: msg,
+        timestamp: getCurrentTime(),
+      }));
+
+      setFormattedMessages(prev => [...prev, ...newFormattedMessages]);
+      prevMessagesLengthRef.current = messages.length;
+    }
+  }, [messages, getCurrentTime]);
+
   const renderMessages = () =>
-    messages.map((msg, idx) => (
-      <ChatUser key={`${msg}-${idx}`} message={msg} time={getStartTime()} />
+    formattedMessages.map((msg, idx) => (
+      <ChatUser key={`${msg.text}-${idx}`} message={msg.text} time={msg.timestamp} />
     ));
 
   const renderQuestionFlow = () => {
@@ -60,7 +82,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
         <ChatConsiderationBox onSelect={handleSelectOption} disabled={!!selectedOption} />
         {selectedOption && (
           <>
-            <ChatUser message={selectedOption} time={getStartTime()} />
+            <ChatUser message={selectedOption} time={selectedOptionTime} />
             <ChatImageBox
               onImageUpload={() => setHasUploadedImage(true)}
               onImageCountChange={count => {
@@ -82,7 +104,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
       <ChatUser message={START_MESSAGE} time={getStartTime()} />
       <ChatQuestionBox />
       {renderMessages()}
-      {!showNextQuestion && messages.length > 0 && (
+      {!showNextQuestion && formattedMessages.length > 0 && (
         <NextQuestionButton onClick={() => setShowNextQuestion(true)} />
       )}
       {renderQuestionFlow()}

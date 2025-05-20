@@ -1,10 +1,15 @@
 import GoodBotFABImage from '@/shared/assets/images/ImgGoodbotFAB.png';
 
-const GoodBotFAB = () => {
+interface GoodBotFABProps {
+  onClick: () => void;
+}
+
+const GoodBotFAB = ({ onClick }: GoodBotFABProps) => {
   return (
     <button
       type="button"
       title="병원 더보기 버튼"
+      onClick={onClick}
       className="inline-flex items-center rounded-full bg-White border border-[#ECEDF0] shadow-[0_0px_20px_rgba(0,0,0,0.1)] py-[8px] pl-[20px] pr-[12px]"
     >
       <div className="flex flex-col gap-[2px]">

@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { formatTime } from '@/shared/utils/date';
 import { useSelectableOption } from '../../hooks/useSelectableOption';
 import ChatBubbleBot from './ChatBubbleBot';
-import SelectableButton from '@/pages/chat/components/SelectableButton';
+import SelectableButton from '../../components/SelectableButton';
 
 interface ChatConsiderationBoxProps {
   onSelect: (value: string) => void;
@@ -25,7 +25,7 @@ const ChatConsiderationBox: React.FC<ChatConsiderationBoxProps> = ({ onSelect, d
       message={
         <div className="flex flex-col gap-[1rem]">
           <p className="body-med-14 text-CGray-2 break-keep">
-            이 중 제가 고려해야 할 정보가 있을까요?<span className="text-CGray-4">(2/3)</span>
+            이 중 제가 고려해야 할 정보가 있을까요? <span className="text-CGray-4">(2/3)</span>
           </p>
           <div className="grid grid-cols-2 gap-[.5rem] p-[.25rem]">
             {options.map(label => (

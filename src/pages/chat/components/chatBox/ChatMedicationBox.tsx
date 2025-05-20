@@ -1,6 +1,9 @@
+import { useRef } from 'react';
 import ChatBubbleBot from '@pages/chat/components/chatBox/ChatBubbleBot';
+import { formatTime } from '@/shared/utils/date';
 
 const ChatMedicationBox = () => {
+  const timeRef = useRef(formatTime(new Date()));
   return (
     <ChatBubbleBot
       message={
@@ -16,7 +19,7 @@ const ChatMedicationBox = () => {
           </ul>
         </div>
       }
-      time="오후 10:20" //수정 필요
+      time={timeRef.current}
     />
   );
 };

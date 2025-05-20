@@ -1,12 +1,35 @@
-import { useRef } from 'react';
-import { formatTime } from '@/shared/utils/date';
+import { useState } from 'react';
 
-export function useUserStartTime() {
-  const ref = useRef<string | null>(null);
-  const getStartTime = () => ref.current ?? formatTime(new Date());
-  const setStartTime = () => {
-    ref.current = formatTime(new Date());
+export const useUserStartTime = () => {
+  const [startTime, setStartTimeState] = useState<string>('');
+
+  const formatTime = (date: Date): string => {
+    const hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const period = hours < 12 ? '오전' : '오후';
+    const displayHours = hours % 12 || 12;
+
+    return `${period} ${displayHours}:${minutes}`;
   };
 
-  return { getStartTime, setStartTime };
-}
+  const setStartTime = () => {
+    const formattedTime = formatTime(new Date());
+    setStartTimeState(formattedTime);
+  };
+
+  const getCurrentTime = (): string => {
+    return formatTime(new Date());
+  };
+
+  const getStartTime = (): string => {
+    return startTime;
+  };
+
+  return {
+    getStartTime,
+    setStartTime,
+    getCurrentTime,
+  };
+};
+
+export default useUserStartTime;

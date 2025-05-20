@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router';
-import QnASearch from '../qnaList/components/QnASearch';
+import QnASearch from '@/pages/qna/qnaList/components/QnASearch';
 import Footer from '@/shared/components/Footer';
 
 const QnALayout = () => {
   return (
-    <div className="flex flex-col justify-center items-center mb-[9.1875rem]">
+    <div className="flex flex-col items-center mb-[9.1875rem]">
       <QnASearch />
       <main>
         <Outlet />

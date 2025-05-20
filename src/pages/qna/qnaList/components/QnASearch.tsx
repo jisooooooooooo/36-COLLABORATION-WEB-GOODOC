@@ -1,14 +1,20 @@
 import { useState } from 'react';
 import IconSearch from '@/shared/assets/svg/IconSearch.svg?react';
 import BackArrow from '@/shared/assets/svg/back-arrow.svg?react';
+import { useNavigate } from 'react-router';
 
 const QnASearch = () => {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(-1);
+  };
 
   return (
-    <div className="flex justify-between items-center mt-[1.5rem] gap-4 w-[20.9375rem]">
-      <button type="button">
+    <div className="flex mt-[1.5rem] gap-[.25rem] w-[20.9375rem]">
+      <button type="button" onClick={handleClick}>
         <BackArrow className="w-[2.25rem] h-[2.25rem]" />
       </button>
       <div className="relative flex-1">
