@@ -58,7 +58,7 @@ const ChatImageBox: React.FC<ChatImageBoxProps> = ({ onImageUpload, onImageCount
               <p className="body-med-14">마지막으로 증상과 관련된 사진을 첨부해주세요.</p>
               <p className="body-med-14">
                 최대 3장까지 사진으로 첨부할 수 있어요.
-                <span className="text-CGray-4"> (2/3)</span>
+                <span className="text-CGray-4"> (3/3)</span>
               </p>
               <div className="flex gap-[.75rem] mt-[1rem] justify-center w-full">
                 <Button label="바로 답변받기" onClick={() => {}} variant="primary" />
