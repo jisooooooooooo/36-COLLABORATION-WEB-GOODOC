@@ -1,14 +1,9 @@
 import QnAListItem from './QnAListItem';
-
-interface QnAListItemProps {
-  id: number;
-  title: string;
-  summary: string;
-  department: string;
-  timeElapsed: string;
-}
+import type { QnAPreview } from '@/shared/apis/qna/qnaHome';
+// 컴파일할 때만 사용되고, 실제 실행되는 JS 코드에서는 존재하지 않는 타입 정보 ->
+// import할 때 import type 이렇게 명시해야 트리쉐이킹과 모듈 번들링 최적화가 잘 이루어짐
 interface QnAListProps {
-  qnaPreviews: QnAListItemProps[];
+  qnaPreviews: QnAPreview[];
 }
 
 const QnAList = ({ qnaPreviews }: QnAListProps) => {
