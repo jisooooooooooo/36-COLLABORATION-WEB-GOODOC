@@ -4,10 +4,12 @@ import { formatTime } from '@/shared/utils/date';
 import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 import ChatQuestionBox from './chatBox/ChatQuestionBox';
 import ChatUser from './user/ChatUser';
+// import ChatModal from './ChatModal';
 
 const NOTICE_MESSAGE = '익명으로 공개하니 안심하세요';
 
 const ChatBody: React.FC = () => {
+  // const [open, setOpen] = useState(false);
   const [chatStep, setChatStep] = useState<'initial' | 'started'>('initial');
 
   const userStartTimeRef = useRef<string | null>(null);
@@ -42,6 +44,14 @@ const ChatBody: React.FC = () => {
           <div ref={scrollRef} />
         </>
       )}
+      {/* <button onClick={() => setOpen(true)}>모달 열기</button>
+      <ChatModal
+        open={open}
+        onClose={() => setOpen(false)}
+        onContinue={() => {
+          setOpen(false);
+        }}
+      /> */}
     </section>
   );
 };
