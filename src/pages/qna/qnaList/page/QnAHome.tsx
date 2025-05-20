@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchQnAList, type QnAHomeResponse } from '@/shared/apis/qna/qnaHome';
 import { getQnaErrorMessage } from '@/shared/apis/qna/error';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // const dummyQnaData = Array.from({ length: 20 }, (_, i) => ({
 //   id: i + 1,
@@ -28,6 +29,8 @@ const QnAHome = () => {
     queryKey: ['qnaList'],
     queryFn: fetchQnAList,
   });
+
+  const navigate = useNavigate();
 
   const { data, hasMore, loadMore } = usePagination(qnaList?.qnaPreviews ?? [], 3);
   const filteredData =
@@ -63,6 +66,7 @@ const QnAHome = () => {
         py="py-[1rem]"
         position="fixed"
         bottom="bottom-[2rem]"
+        onClick={() => navigate('/chat')}
       />
     </div>
   );
