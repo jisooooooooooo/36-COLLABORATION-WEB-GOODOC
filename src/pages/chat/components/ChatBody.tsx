@@ -5,6 +5,7 @@ import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 import ChatQuestionBox from './chatBox/ChatQuestionBox';
 import ChatUser from './user/ChatUser';
 import Button from './Button';
+import ChatConsiderationBox from './chatBox/ChatConsiderationBox';
 
 interface ChatBodyProps {
   messages: string[];
@@ -14,6 +15,7 @@ const NOTICE_MESSAGE = '익명으로 공개하니 안심하세요';
 
 const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [chatStep, setChatStep] = useState<'initial' | 'started'>('initial');
+  const [showNextQuestion, setShowNextQuestion] = useState(false);
 
   const userStartTimeRef = useRef<string | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -54,10 +56,11 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
               <Button
                 label="다음 질문 받기"
                 variant="secondary"
-                onClick={() => console.log('다음 질문 로직')}
+                onClick={() => setShowNextQuestion(true)}
               />
             </div>
           )}
+          {showNextQuestion && <ChatConsiderationBox />}
 
           <div ref={scrollRef} />
         </>
