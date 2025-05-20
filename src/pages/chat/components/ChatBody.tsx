@@ -58,7 +58,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
           <ChatUser message="상담 시작하기" time={getStartTime()} />
           <ChatQuestionBox />
 
-          {[...messages].reverse().map((msg, idx) => (
+          {[...messages].map((msg, idx) => (
             <ChatUser key={idx} message={msg} time={getStartTime()} />
           ))}
 
