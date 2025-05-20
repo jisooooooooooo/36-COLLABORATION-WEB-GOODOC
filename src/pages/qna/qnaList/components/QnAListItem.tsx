@@ -1,15 +1,12 @@
 import Ellipsis from '@shared/assets/svg/ellipsis.svg?react';
+import type { QnAPreview } from '@/shared/apis/qna/qnaHome';
+import { useNavigate } from 'react-router-dom';
 
-interface QnAListItemProps {
-  title: string;
-  summary: string;
-  department: string;
-  timeElapsed: string;
-}
+const QnAListItem = ({ id, title, summary, department, timeElapsed }: QnAPreview) => {
+  const navigate = useNavigate();
 
-const QnAListItem = ({ title, summary, department, timeElapsed }: QnAListItemProps) => {
   const handleOnClick = () => {
-    console.log('Clicked');
+    navigate(`/qna/${id}`);
   };
 
   return (

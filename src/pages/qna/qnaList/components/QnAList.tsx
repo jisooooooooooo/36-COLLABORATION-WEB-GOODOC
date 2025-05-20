@@ -16,6 +16,7 @@ const QnAList = ({ qnaPreviews }: QnAListProps) => {
       {qnaPreviews.map(qna => (
         <QnAListItem
           key={qna.id}
+          id={qna.id}
           department={qna.department}
           title={qna.title}
           timeElapsed={qna.timeElapsed}
