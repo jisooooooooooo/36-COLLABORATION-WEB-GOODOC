@@ -6,6 +6,7 @@ import { usePagination } from '@/pages/main/hooks/UsePagination';
 import { useQuery } from '@tanstack/react-query';
 import { fetchQnAList, type QnAHomeResponse } from '@/shared/apis/qna/qnaHome';
 import { getQnaErrorMessage } from '@/shared/apis/qna/error';
+import { useState } from 'react';
 
 // const dummyQnaData = Array.from({ length: 20 }, (_, i) => ({
 //   id: i + 1,
@@ -16,6 +17,8 @@ import { getQnaErrorMessage } from '@/shared/apis/qna/error';
 // }));
 
 const QnAHome = () => {
+  const [selectedDept, setSelectedDept] = useState<string>('전체');
+
   const {
     data: qnaList,
     isLoading,
@@ -27,15 +30,17 @@ const QnAHome = () => {
   });
 
   const { data, hasMore, loadMore } = usePagination(qnaList?.qnaPreviews ?? [], 3);
+  const filteredData =
+    selectedDept === '전체' ? data : data.filter(dept => dept.department === selectedDept);
 
   if (isLoading) return <span>로딩 중...</span>;
   if (isError) return <div>{getQnaErrorMessage(error)}</div>;
 
   return (
     <div className="flex flex-col mb-[2.25rem]">
-      <DeptFilter />
+      <DeptFilter selectedDept={selectedDept} onSelectDept={setSelectedDept} />
       <MyQuestion />
-      <QnAList qnaPreviews={data} />
+      <QnAList qnaPreviews={filteredData} />
       {hasMore && (
         <QnAButton
           text="질문 더보기"

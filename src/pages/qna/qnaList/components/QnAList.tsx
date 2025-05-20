@@ -7,6 +7,10 @@ interface QnAListProps {
 }
 
 const QnAList = ({ qnaPreviews }: QnAListProps) => {
+  if (qnaPreviews.length === 0)
+    return (
+      <div className="w-[20.9375rem] justify-center title-semi-18">결과를 찾을 수 없습니다</div>
+    );
   return (
     <div className="flex flex-col gap-[3rem] mb-[5rem]">
       {qnaPreviews.map(qna => (

@@ -1,13 +1,18 @@
 import Chevron from '@shared/assets/svg/chevron-updown.svg?react';
 import { deptList } from '@/shared/constants/constant';
 import DeptBox from '@pages/qna/qnaList/components/DeptBox';
-import { useDeptFilter } from '@pages/qna/hooks/useDeptFilter';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 // motion: 애니메이션의 initial(첫 마운트 시 상태), animate(끝 상태), transition(처음~끝까지 어떻게 변할 지) 설정 가능한 컴포넌트
 // AnimatePresence: 컴포넌트가 언마운트될 때 exit animation 가능하게 해줌
 
-const DeptFilter = () => {
-  const { showDeptList, selectedDept, toggleDeptList, selectDept } = useDeptFilter();
+interface DeptFilterProps {
+  selectedDept: string;
+  onSelectDept: (dept: string) => void;
+}
+
+const DeptFilter = ({ selectedDept, onSelectDept }: DeptFilterProps) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const motionValue = {
     initial: { height: 0, opacity: 0 },
@@ -17,16 +22,16 @@ const DeptFilter = () => {
 
   return (
     <div className="flex flex-col w-[20.9375rem] mt-[2.25rem]">
-      <button type="button" className="flex" onClick={toggleDeptList}>
+      <button type="button" className="flex" onClick={() => setIsOpen(prev => !prev)}>
         <span className="title-bold-20 text-CGray-1 mr-[.25rem]">진료과 전체</span>
         <Chevron
-          className={`transition-transform duration-300 ${!showDeptList ? 'rotate-180' : 'rotate-0'}`}
+          className={`transition-transform duration-300 ${!isOpen ? 'rotate-180' : 'rotate-0'}`}
         />
       </button>
 
       {/* 추후 Framer Motion 등으로 애니메이션 구현 예정 */}
       <AnimatePresence>
-        {showDeptList && (
+        {isOpen && (
           <motion.div
             variants={motionValue}
             initial="initial"
@@ -41,7 +46,7 @@ const DeptFilter = () => {
                     key={dept}
                     deptName={dept}
                     isSelected={dept === selectedDept}
-                    onBoxClick={() => selectDept(dept)}
+                    onBoxClick={() => onSelectDept(dept)}
                   />
                 ))}
               </div>
