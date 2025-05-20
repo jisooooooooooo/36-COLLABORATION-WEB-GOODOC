@@ -1,4 +1,4 @@
-import { apiClient } from '@/shared/apis/api';
+import { apiClient } from '@/shared/apis/apiClient';
 
 export interface QnaDetail {
   title: string;
