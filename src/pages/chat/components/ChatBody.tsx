@@ -7,7 +7,13 @@ import ChatUser from './user/ChatUser';
 
 const NOTICE_MESSAGE = '익명으로 공개하니 안심하세요';
 
-const ChatBody: React.FC = () => {
+//확인용
+interface ChatBodyProps {
+  onOpenModal: () => void;
+}
+
+const ChatBody: React.FC<ChatBodyProps> = ({ onOpenModal }) => {
+  // const ChatBody: React.FC = () => {
   const [chatStep, setChatStep] = useState<'initial' | 'started'>('initial');
 
   const userStartTimeRef = useRef<string | null>(null);
@@ -42,6 +48,11 @@ const ChatBody: React.FC = () => {
           <div ref={scrollRef} />
         </>
       )}
+
+      {/* ui 확인용 임시 버튼 */}
+      <button onClick={onOpenModal} className="mt-4 self-center text-sm text-blue-600 underline">
+        모달 열기
+      </button>
     </section>
   );
 };
