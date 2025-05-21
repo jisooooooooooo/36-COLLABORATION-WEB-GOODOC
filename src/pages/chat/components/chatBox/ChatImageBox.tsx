@@ -5,7 +5,12 @@ import Toast from '@/pages/chat/components/Toast';
 import ImagePreviewList from '@/pages/chat/components/user/ImagePreviewList';
 import { formatTime } from '@/shared/utils/date';
 
-const ChatImageBox = () => {
+interface ChatImageBoxProps {
+  onImageUpload?: () => void;
+  onImageCountChange?: (count: number) => void;
+}
+
+const ChatImageBox: React.FC<ChatImageBoxProps> = ({ onImageUpload, onImageCountChange }) => {
   const timeRef = useRef(formatTime(new Date()));
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -26,12 +31,22 @@ const ChatImageBox = () => {
 
     const selectedFiles = Array.from(files);
 
-    if (selectedFiles.length + images.length > 3) {
+    const newImages = [...images, ...selectedFiles];
+
+    if (newImages.length > 3) {
       setShowToast(true);
       return;
     }
 
-    setImages(prev => [...prev, ...selectedFiles]);
+    if (selectedFiles.length > 0 && onImageUpload) {
+      onImageUpload();
+    }
+
+    setImages(newImages);
+
+    if (onImageCountChange) {
+      onImageCountChange(newImages.length);
+    }
   };
 
   return (
@@ -43,7 +58,7 @@ const ChatImageBox = () => {
               <p className="body-med-14">마지막으로 증상과 관련된 사진을 첨부해주세요.</p>
               <p className="body-med-14">
                 최대 3장까지 사진으로 첨부할 수 있어요.
-                <span className="text-CGray-4"> (2/3)</span>
+                <span className="text-CGray-4"> (3/3)</span>
               </p>
               <div className="flex gap-[.75rem] mt-[1rem] justify-center w-full">
                 <Button label="바로 답변받기" onClick={() => {}} variant="primary" />
@@ -55,7 +70,7 @@ const ChatImageBox = () => {
         />
 
         {images.length > 0 && (
-          <div className="mt-[.75rem] px-[1rem]">
+          <div className="mt-[.75rem] px-[1.25rem]">
             <ImagePreviewList images={images} />
           </div>
         )}

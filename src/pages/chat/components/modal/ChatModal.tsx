@@ -5,10 +5,9 @@ import Button from '@pages/chat/components/Button';
 interface ChatModalProps {
   open: boolean;
   onClose: () => void;
-  onContinue: () => void;
 }
 
-const ChatModal: React.FC<ChatModalProps> = ({ open, onClose, onContinue }) => {
+const ChatModal: React.FC<ChatModalProps> = ({ open, onClose }) => {
   const navigate = useNavigate();
 
   if (!open) return null;
@@ -30,7 +29,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ open, onClose, onContinue }) => {
             }}
             variant="gray"
           />
-          <Button label="계속할게요" onClick={onContinue} variant="secondary" />
+          <Button label="계속할게요" onClick={onClose} variant="secondary" />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { chatFadeUp, chatEnter, chatHidden } from '@/shared/styles/animation';
 
 const ChatQuestionBox = () => {
   const timeRef = useRef(formatTime(new Date()));
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -14,10 +15,19 @@ const ChatQuestionBox = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (visible) {
+      const timeout = setTimeout(() => {
+        containerRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+      return () => clearTimeout(timeout);
+    }
+  }, [visible]);
+
   const animationClass = visible ? chatEnter : chatHidden;
 
   return (
-    <div className={`${chatFadeUp} ${animationClass}`}>
+    <div ref={containerRef} className={`${chatFadeUp} ${animationClass}`}>
       <ChatBubbleBot
         message={
           <div>

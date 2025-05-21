@@ -1,11 +1,16 @@
 import BackArrowIcon from '@shared/assets/svg/back-arrow.svg?react';
 import MenuIcon from '@shared/assets/svg/menu.svg?react';
 
-const ChatHeader: React.FC = () => {
+interface ChatHeaderProps {
+  onBackClick: () => void;
+  onMenuClick: () => void;
+}
+
+const ChatHeader: React.FC<ChatHeaderProps> = ({ onBackClick, onMenuClick }) => {
   return (
     <header className="fixed top-0 left-0 w-[23.4375rem] z-10 flex items-center justify-between px-[1.25rem] py-[.5rem] bg-CGray-8 border-b border-[#CACED8]">
       <div className="flex items-center">
-        <BackArrowIcon className="w-[2.25rem] h-[2.25rem] cursor-pointer" />
+        <BackArrowIcon className="w-[2.25rem] h-[2.25rem] cursor-pointer" onClick={onBackClick} />
         <span className="ml-[.5rem] mr-[.25rem] title-semi-14 text-SoftBlack">
           AI 건강매니저 굿봇
         </span>
@@ -13,7 +18,7 @@ const ChatHeader: React.FC = () => {
           <span className="body-med-10 text-White">상담가능</span>
         </div>
       </div>
-      <MenuIcon className="w-[2.25rem] h-[2.25rem] cursor-pointer" />
+      <MenuIcon className="w-[2.25rem] h-[2.25rem] cursor-pointer" onClick={onMenuClick} />
     </header>
   );
 };
