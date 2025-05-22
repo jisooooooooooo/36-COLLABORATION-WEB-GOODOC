@@ -1,23 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import ChatBubbleBot from '@/pages/chat/components/chatBox/ChatBubbleBot';
 import Button from '@pages/chat/components/Button';
 import { formatTime } from '@/shared/utils/date';
+interface ChatSummaryBoxProps {
+  summary: string;
+  department: string;
+}
 
-const ChatSummaryBox = () => {
+const ChatSummaryBox: React.FC<ChatSummaryBoxProps> = ({ summary, department }) => {
   const timeRef = useRef(formatTime(new Date()));
-  const [summary, setSummary] = useState('');
-  const [department, setDepartment] = useState('');
-
-  useEffect(() => {
-    const mock = {
-      data: {
-        summary: '두드러기는 가려움증을 동반하고 대개 일시적이지만 지속 시 치료가 필요합니다.',
-        department: '피부과 또는 내과 (소아의 경우 소아청소년과)',
-      },
-    };
-    setSummary(mock.data.summary);
-    setDepartment(mock.data.department);
-  }, []);
 
   return (
     <div>
