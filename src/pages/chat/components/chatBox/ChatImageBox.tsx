@@ -8,9 +8,14 @@ import { formatTime } from '@/shared/utils/date';
 interface ChatImageBoxProps {
   onImageUpload?: () => void;
   onImageCountChange?: (count: number) => void;
+  onFilesChange?: (files: File[]) => void;
 }
 
-const ChatImageBox: React.FC<ChatImageBoxProps> = ({ onImageUpload, onImageCountChange }) => {
+const ChatImageBox: React.FC<ChatImageBoxProps> = ({
+  onImageUpload,
+  onImageCountChange,
+  onFilesChange,
+}) => {
   const timeRef = useRef(formatTime(new Date()));
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -46,6 +51,10 @@ const ChatImageBox: React.FC<ChatImageBoxProps> = ({ onImageUpload, onImageCount
 
     if (onImageCountChange) {
       onImageCountChange(newImages.length);
+    }
+
+    if (onFilesChange) {
+      onFilesChange(newImages);
     }
   };
 
