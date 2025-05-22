@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import FilterChip from '@/pages/main/components/FilterChip';
 import LocationCategoryFilter from '@/pages/main/components/LocationCategoryFilter';
 import MainHeader from '@/pages/main/components/MainHeader';
@@ -9,22 +10,28 @@ import HospitalListItem from '@/pages/main/components/HospitalListItem';
 import Footer from '@/shared/components/Footer';
 import GoodBotFAB from '@/pages/main/components/GoodBotFAB';
 import PromotionBanner from '@/shared/components/PromotionBanner';
-import { dummyHospitals } from '@/shared/constants/hospitals';
+import type { HospitalInfo } from '@/pages/main/components/HospitalListItem';
 import { usePagination } from '@/pages/main/hooks/UsePagination';
 import { useNavigate } from 'react-router';
+import { fetchHospitalInfo } from '@/shared/apis/main/HospitalInfoAPI';
 
 const MainPage = () => {
-  const { data: hospitals, hasMore, loadMore } = usePagination(dummyHospitals, 7);
+  const [items, setItems] = useState<HospitalInfo[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchHospitalInfo()
+      .then(data => setItems(data))
+      .catch(err => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const { data: hospitals, hasMore, loadMore } = usePagination(items, 7);
 
   const navigate = useNavigate();
-
-  const handleMenuClick = () => {
-    navigate('/menu');
-  };
-
-  const handleGoodBotClick = () => {
-    navigate('/chat');
-  };
+  const handleMenuClick = () => navigate('/menu');
+  const handleGoodBotClick = () => navigate('/chat');
 
   return (
     <div>
@@ -43,12 +50,14 @@ const MainPage = () => {
       </div>
 
       <section className="flex flex-col gap-[5rem] px-[1.25rem] mt-[3rem] mb-[2.25rem]">
+        {loading && <div className="text-center">로딩 중</div>}
+        {error && <div className="text-center">에러: {error}</div>}
+
         <div className="flex flex-col gap-[3rem]">
-          {hospitals.map(hospital => (
-            <HospitalListItem key={hospital.id} {...hospital} />
-          ))}
+          {!loading &&
+            hospitals.map(hospital => <HospitalListItem key={hospital.id} {...hospital} />)}
         </div>
-        {hasMore && <MoreButton onClick={loadMore} />}
+        {!loading && hasMore && <MoreButton onClick={loadMore} />}
       </section>
 
       <Footer />
