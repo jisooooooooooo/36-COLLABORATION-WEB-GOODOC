@@ -1,5 +1,15 @@
 import type { JSX } from 'react';
 
+const parseMarkdown = (text: string): JSX.Element[] => {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (/^\*\*[^*]+\*\*$/.test(part)) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return <span key={i}>{part}</span>;
+  });
+};
+
 export const formatText = (content: string): JSX.Element[] => {
   const sentences = content.split(/(?<=[.?!:])\s+(?=\d+\.)/);
   const result: (string | null)[] = [];
@@ -42,7 +52,7 @@ export const formatText = (content: string): JSX.Element[] => {
       <br key={index} />
     ) : (
       <p key={index}>
-        {line}
+        {parseMarkdown(line)}
         <br />
       </p>
     )
