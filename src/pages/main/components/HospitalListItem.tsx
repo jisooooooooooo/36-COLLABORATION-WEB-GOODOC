@@ -24,6 +24,8 @@ const HospitalListItem = ({
   review,
   image,
 }: HospitalInfo) => {
+  const displayCloseAt = closeAt ? closeAt.split(':').slice(0, 2).join(':') : '–';
+
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-[.5625rem]">
@@ -33,7 +35,7 @@ const HospitalListItem = ({
             {isOpen && (
               <>
                 <span className="title-semi-14 text-SoftGreen">진료중</span>
-                <span className="title-med-14 text-WGray-1">{closeAt} 진료종료</span>
+                <span className="title-med-14 text-WGray-1">{displayCloseAt} 진료종료</span>
               </>
             )}
             {!isOpen && <span className="title-semi-14 text-WGray-1">진료시간 병원 문의</span>}
@@ -62,7 +64,7 @@ const HospitalListItem = ({
         </div>
       </div>
       {image ? (
-        <img src={image} className="w-[4.75rem] h-[4.75rem]" />
+        <img src={image} className="w-[4.75rem] h-[4.75rem] rounded-[6px]" />
       ) : (
         <img src={ImgHospitalEmpty} className="w-[4.75rem] h-[4.75rem]" />
       )}
