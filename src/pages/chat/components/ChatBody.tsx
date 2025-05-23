@@ -16,6 +16,7 @@ import NextQuestionButton from './NextQuestionButton';
 import ChatAnswerBox from './chatBox/ChatAnswerBox';
 import ChatSummaryBox from './chatBox/ChatSummaryBox';
 import ChatLoadingBox from './chatBox/ChatLoadingBox';
+import ChatMedicationBox from './chatBox/ChatMedicationBox';
 
 interface Message {
   text: string;
@@ -37,10 +38,12 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [showNextQuestion, setShowNextQuestion] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [selectedOptionTime, setSelectedOptionTime] = useState<string>('');
+  const [phase, setPhase] = useState<'none' | 'medication' | 'image'>('none');
   const [hasUploadedImage, setHasUploadedImage] = useState(false);
   const [imageCount, setImageCount] = useState(0);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [formattedMessages, setFormattedMessages] = useState<Message[]>([]);
+  const [initialMessages, setInitialMessages] = useState<Message[]>([]);
+  const [medicationMessages, setMedicationMessages] = useState<Message[]>([]);
   const [chatResult, setChatResult] = useState<ChatResponse | null>(null);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState(false);
   const prevMessagesLengthRef = useRef<number>(0);
@@ -48,11 +51,13 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const { getStartTime, setStartTime, getCurrentTime } = useUserStartTime();
 
   useAutoScrollToBottom(scrollRef, [
-    formattedMessages,
+    initialMessages,
+    medicationMessages,
     selectedOption,
     hasUploadedImage,
     imageCount,
     showNextQuestion,
+    phase,
     chatResult,
     isLoadingAnswer,
   ]);
@@ -78,12 +83,17 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
     setChatStep('started');
   };
 
-  const handleNextQuestionClick = () => {
-    if (!selectedOption || formattedMessages.length === 0) {
-      return;
+  const handleNextPhase = () => {
+    if (phase === 'medication') {
+      setPhase('image');
     }
+  };
+
+  const handleSubmit = () => {
+    if (!selectedOption || (initialMessages.length === 0 && medicationMessages.length === 0))
+      return;
     mutation.mutate({
-      question: formattedMessages.map(m => m.text).join('\n'),
+      question: [...initialMessages, ...medicationMessages].map(m => m.text).join('\n'),
       detail: selectedOption,
       files: imageFiles,
     });
@@ -93,11 +103,11 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
     if (!selectedOption) {
       setSelectedOption(option);
       setSelectedOptionTime(getCurrentTime());
+      setPhase('medication');
     }
   };
 
   useEffect(() => {
-    if (showNextQuestion) return;
     if (messages.length > prevMessagesLengthRef.current) {
       const newMessages = messages.slice(prevMessagesLengthRef.current);
       const newFormattedMessages = newMessages.map(msg => ({
@@ -105,14 +115,24 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
         timestamp: getCurrentTime(),
       }));
 
-      setFormattedMessages(prev => [...prev, ...newFormattedMessages]);
+      if (phase === 'medication') {
+        setMedicationMessages(prev => [...prev, ...newFormattedMessages]);
+      } else {
+        setInitialMessages(prev => [...prev, ...newFormattedMessages]);
+      }
+
       prevMessagesLengthRef.current = messages.length;
     }
-  }, [messages, getCurrentTime, showNextQuestion]);
+  }, [messages, getCurrentTime, phase]);
 
-  const renderMessages = () =>
-    formattedMessages.map((msg, idx) => (
-      <ChatUser key={`${msg.text}-${idx}`} message={msg.text} time={msg.timestamp} />
+  const renderInitialMessages = () =>
+    initialMessages.map((msg, idx) => (
+      <ChatUser key={`init-${msg.text}-${idx}`} message={msg.text} time={msg.timestamp} />
+    ));
+
+  const renderMedicationMessages = () =>
+    medicationMessages.map((msg, idx) => (
+      <ChatUser key={`med-${msg.text}-${idx}`} message={msg.text} time={msg.timestamp} />
     ));
 
   const renderQuestionFlow = () => {
@@ -124,13 +144,23 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
         {selectedOption && (
           <>
             <ChatUser message={selectedOption} time={selectedOptionTime} />
-            <ChatImageBox
-              onImageUpload={() => setHasUploadedImage(true)}
-              onImageCountChange={count => setImageCount(count)}
-              onFilesChange={setImageFiles}
-            />
-            {hasUploadedImage && imageCount < 3 && (
-              <NextQuestionButton onClick={handleNextQuestionClick} />
+            <ChatMedicationBox />
+            {renderMedicationMessages()}
+            {phase === 'medication' && medicationMessages.length > 0 && (
+              <NextQuestionButton onClick={handleNextPhase} />
+            )}
+            {phase === 'image' && (
+              <>
+                <ChatImageBox
+                  onImageUpload={() => setHasUploadedImage(true)}
+                  onImageCountChange={count => setImageCount(count)}
+                  onFilesChange={setImageFiles}
+                  onImmediateSubmit={handleSubmit}
+                />
+                {hasUploadedImage && imageCount < 3 && (
+                  <NextQuestionButton onClick={handleSubmit} />
+                )}
+              </>
             )}
           </>
         )}
@@ -142,23 +172,18 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
     <>
       <ChatUser message={START_MESSAGE} time={getStartTime()} />
       <ChatQuestionBox />
-      {renderMessages()}
-
-      {!showNextQuestion && formattedMessages.length > 0 && (
+      {renderInitialMessages()}
+      {!showNextQuestion && initialMessages.length > 0 && (
         <NextQuestionButton onClick={() => setShowNextQuestion(true)} />
       )}
-
       {renderQuestionFlow()}
-
       {isLoadingAnswer && <ChatLoadingBox />}
-
       {!isLoadingAnswer && chatResult && (
         <>
           <ChatAnswerBox answer={chatResult.answer} />
           <ChatSummaryBox summary={chatResult.summary} department={chatResult.department} />
         </>
       )}
-
       <div ref={scrollRef} />
     </>
   );
@@ -169,7 +194,6 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
         <Alert className="w-[1rem] h-[1rem]" aria-hidden="true" />
         <p className="title-semi-14 text-Mainblue">{NOTICE_MESSAGE}</p>
       </div>
-
       <ChatWelcomeBox onStart={handleStart} />
       {chatStep === 'started' && renderChatFlow()}
     </section>
