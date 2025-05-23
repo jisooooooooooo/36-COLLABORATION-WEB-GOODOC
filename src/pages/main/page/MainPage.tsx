@@ -62,7 +62,7 @@ const MainPage = () => {
 
       <Footer />
 
-      <div className="fixed bottom-[4.625rem] right-[1.25rem]">
+      <div className="fixed bottom-[2.5rem] right-[1.25rem]">
         <GoodBotFAB onClick={handleGoodBotClick} />
       </div>
     </div>
