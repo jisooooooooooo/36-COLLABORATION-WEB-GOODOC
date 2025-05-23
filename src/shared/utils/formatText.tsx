@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 
 export const formatText = (content: string): JSX.Element[] => {
-  const sentences = content.split(/(?<=[.?!])\s+/);
+  const sentences = content.split(/(?<=[.?!:])\s+(?=\d+\.)/);
   const result: (string | null)[] = [];
 
   let currentNumberedItem: string | null = null;
