@@ -9,12 +9,14 @@ interface ChatImageBoxProps {
   onImageUpload?: () => void;
   onImageCountChange?: (count: number) => void;
   onFilesChange?: (files: File[]) => void;
+  onImmediateSubmit?: () => void;
 }
 
 const ChatImageBox: React.FC<ChatImageBoxProps> = ({
   onImageUpload,
   onImageCountChange,
   onFilesChange,
+  onImmediateSubmit,
 }) => {
   const timeRef = useRef(formatTime(new Date()));
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -70,7 +72,11 @@ const ChatImageBox: React.FC<ChatImageBoxProps> = ({
                 <span className="text-CGray-4"> (3/3)</span>
               </p>
               <div className="flex gap-[.75rem] mt-[1rem] justify-center w-full">
-                <Button label="바로 답변받기" onClick={() => {}} variant="primary" />
+                <Button
+                  label="바로 답변받기"
+                  onClick={onImmediateSubmit ? onImmediateSubmit : () => {}}
+                  variant="primary"
+                />
                 <Button label="사진 올리기" onClick={handleUploadClick} variant="secondary" />
               </div>
             </>
