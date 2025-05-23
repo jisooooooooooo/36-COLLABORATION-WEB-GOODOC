@@ -54,6 +54,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
     imageCount,
     showNextQuestion,
     chatResult,
+    isLoadingAnswer,
   ]);
 
   const mutation = useMutation({
