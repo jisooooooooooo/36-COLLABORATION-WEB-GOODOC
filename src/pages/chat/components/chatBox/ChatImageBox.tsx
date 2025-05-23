@@ -37,7 +37,6 @@ const ChatImageBox: React.FC<ChatImageBoxProps> = ({
     if (!files) return;
 
     const selectedFiles = Array.from(files);
-
     const newImages = [...images, ...selectedFiles];
 
     if (newImages.length > 3) {
@@ -57,6 +56,10 @@ const ChatImageBox: React.FC<ChatImageBoxProps> = ({
 
     if (onFilesChange) {
       onFilesChange(newImages);
+    }
+
+    if (newImages.length === 3 && onImmediateSubmit) {
+      onImmediateSubmit();
     }
   };
 
