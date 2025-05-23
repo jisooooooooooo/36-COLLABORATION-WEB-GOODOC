@@ -17,7 +17,7 @@ const QnAListItem = ({ id, title, summary, department, timeElapsed }: QnAPreview
     >
       <div className="flex gap-[.5rem] text-CGray-4">
         <span className="caption-semi-13">{department}</span>
-        <Ellipsis />
+        <Ellipsis className="self-center" />
         <span className="caption-reg-13">{timeElapsed}</span>
       </div>
 
