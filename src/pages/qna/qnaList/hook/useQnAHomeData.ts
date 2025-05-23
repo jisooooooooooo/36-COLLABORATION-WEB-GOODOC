@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchQnAList, type QnAHomeResponse } from '@/shared/apis/qna/qnaHome';
 import { usePagination } from '@/pages/main/hooks/UsePagination';
 import { useNavigate } from 'react-router-dom';
+const QNA_PAGE_SIZE = 10;
 
 export const useQnaHomeData = () => {
   const [selectedDept, setSelectedDept] = useState<string>('전체');
@@ -19,7 +20,7 @@ export const useQnaHomeData = () => {
     queryFn: fetchQnAList,
   });
 
-  const { data, hasMore, loadMore } = usePagination(qnaList?.qnaPreviews ?? [], 3);
+  const { data, hasMore, loadMore } = usePagination(qnaList?.qnaPreviews ?? [], QNA_PAGE_SIZE);
 
   const filteredData =
     selectedDept === '전체' ? data : data.filter(dept => dept.department === selectedDept);
