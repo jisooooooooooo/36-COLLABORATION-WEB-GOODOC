@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="w-full flex flex-col justify-start">
       <div className="w-full h-[.0625rem] border-t border-[#ECEDF0]"></div>
 
-      <div className="flex flex-col mt-[5rem] ml-[1.25rem] gap-[2.25rem]">
+      <div className="flex flex-col mt-[5rem] ml-[1.25rem] gap-[2.25rem] mb-[3.375rem]">
         <div className="flex gap-[2rem] text-CGray-2 title-bold-16">
           <span>회사소개</span>
           <span>병원・약국 가입문의</span>
