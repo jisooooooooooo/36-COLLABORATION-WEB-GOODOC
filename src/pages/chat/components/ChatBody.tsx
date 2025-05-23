@@ -97,6 +97,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   };
 
   useEffect(() => {
+    if (showNextQuestion) return;
     if (messages.length > prevMessagesLengthRef.current) {
       const newMessages = messages.slice(prevMessagesLengthRef.current);
       const newFormattedMessages = newMessages.map(msg => ({
@@ -107,7 +108,7 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
       setFormattedMessages(prev => [...prev, ...newFormattedMessages]);
       prevMessagesLengthRef.current = messages.length;
     }
-  }, [messages, getCurrentTime]);
+  }, [messages, getCurrentTime, showNextQuestion]);
 
   const renderMessages = () =>
     formattedMessages.map((msg, idx) => (
