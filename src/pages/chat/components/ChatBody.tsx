@@ -1,27 +1,22 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+
 import { useUserStartTime } from '../hooks/useUserStartTime';
 import { useAutoScrollToBottom } from '../hooks/useAutoScrollToBottom';
+import { useChatMessageManager } from '../hooks/useChatMessageManager';
+
 import { NOTICE_MESSAGE, START_MESSAGE } from '@shared/constants/chatMessages';
 import { postChat } from '@/shared/apis/chat/chatApi';
 import { handleApiError } from '@/shared/apis/chat/errorHandler';
 
-import Alert from '@shared/assets/svg/chatAlert.svg?react';
 import ChatWelcomeBox from '@/pages/chat/components/chatBox/ChatWelcomeBox';
 import ChatQuestionBox from './chatBox/ChatQuestionBox';
-import ChatConsiderationBox from './chatBox/ChatConsiderationBox';
-import ChatImageBox from './chatBox/ChatImageBox';
+import QuestionFlowSection from './chatFlow/QuestionFlowSection';
+import ChatResultSection from './chatFlow/ChatResultSection';
+import UserMessageList from './user/UserMessageList';
 import ChatUser from './user/ChatUser';
 import NextQuestionButton from './NextQuestionButton';
-import ChatAnswerBox from './chatBox/ChatAnswerBox';
-import ChatSummaryBox from './chatBox/ChatSummaryBox';
-import ChatLoadingBox from './chatBox/ChatLoadingBox';
-import ChatMedicationBox from './chatBox/ChatMedicationBox';
-
-interface Message {
-  text: string;
-  timestamp: string;
-}
+import Alert from '@shared/assets/svg/chatAlert.svg?react';
 
 interface ChatResponse {
   answer: string;
@@ -42,14 +37,13 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
   const [hasUploadedImage, setHasUploadedImage] = useState(false);
   const [imageCount, setImageCount] = useState(0);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
-  const [initialMessages, setInitialMessages] = useState<Message[]>([]);
-  const [medicationMessages, setMedicationMessages] = useState<Message[]>([]);
   const [chatResult, setChatResult] = useState<ChatResponse | null>(null);
   const [isLoadingAnswer, setIsLoadingAnswer] = useState(false);
-  const prevMessagesLengthRef = useRef<number>(0);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-  const { getStartTime, setStartTime, getCurrentTime } = useUserStartTime();
 
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  const { getStartTime, setStartTime, getCurrentTime } = useUserStartTime();
+  const { initialMessages, medicationMessages } = useChatMessageManager(messages, phase);
   useAutoScrollToBottom(scrollRef, [
     initialMessages,
     medicationMessages,
@@ -107,83 +101,31 @@ const ChatBody: React.FC<ChatBodyProps> = ({ messages }) => {
     }
   };
 
-  useEffect(() => {
-    if (messages.length > prevMessagesLengthRef.current) {
-      const newMessages = messages.slice(prevMessagesLengthRef.current);
-      const newFormattedMessages = newMessages.map(msg => ({
-        text: msg,
-        timestamp: getCurrentTime(),
-      }));
-
-      if (phase === 'medication') {
-        setMedicationMessages(prev => [...prev, ...newFormattedMessages]);
-      } else {
-        setInitialMessages(prev => [...prev, ...newFormattedMessages]);
-      }
-
-      prevMessagesLengthRef.current = messages.length;
-    }
-  }, [messages, getCurrentTime, phase]);
-
-  const renderInitialMessages = () =>
-    initialMessages.map((msg, idx) => (
-      <ChatUser key={`init-${msg.text}-${idx}`} message={msg.text} time={msg.timestamp} />
-    ));
-
-  const renderMedicationMessages = () =>
-    medicationMessages.map((msg, idx) => (
-      <ChatUser key={`med-${msg.text}-${idx}`} message={msg.text} time={msg.timestamp} />
-    ));
-
-  const renderQuestionFlow = () => {
-    if (!showNextQuestion) return null;
-
-    return (
-      <>
-        <ChatConsiderationBox onSelect={handleSelectOption} disabled={!!selectedOption} />
-        {selectedOption && (
-          <>
-            <ChatUser message={selectedOption} time={selectedOptionTime} />
-            <ChatMedicationBox />
-            {renderMedicationMessages()}
-            {phase === 'medication' && medicationMessages.length > 0 && (
-              <NextQuestionButton onClick={handleNextPhase} />
-            )}
-            {phase === 'image' && (
-              <>
-                <ChatImageBox
-                  onImageUpload={() => setHasUploadedImage(true)}
-                  onImageCountChange={count => setImageCount(count)}
-                  onFilesChange={setImageFiles}
-                  onImmediateSubmit={handleSubmit}
-                />
-                {hasUploadedImage && imageCount < 3 && (
-                  <NextQuestionButton onClick={handleSubmit} />
-                )}
-              </>
-            )}
-          </>
-        )}
-      </>
-    );
-  };
-
   const renderChatFlow = () => (
     <>
       <ChatUser message={START_MESSAGE} time={getStartTime()} />
       <ChatQuestionBox />
-      {renderInitialMessages()}
+      <UserMessageList messages={initialMessages} type="init" />
       {!showNextQuestion && initialMessages.length > 0 && (
         <NextQuestionButton onClick={() => setShowNextQuestion(true)} />
       )}
-      {renderQuestionFlow()}
-      {isLoadingAnswer && <ChatLoadingBox />}
-      {!isLoadingAnswer && chatResult && (
-        <>
-          <ChatAnswerBox answer={chatResult.answer} />
-          <ChatSummaryBox summary={chatResult.summary} department={chatResult.department} />
-        </>
-      )}
+      <QuestionFlowSection
+        showNextQuestion={showNextQuestion}
+        selectedOption={selectedOption}
+        selectedOptionTime={selectedOptionTime}
+        phase={phase}
+        medicationMessages={medicationMessages}
+        hasUploadedImage={hasUploadedImage}
+        imageCount={imageCount}
+        onSelectOption={handleSelectOption}
+        onNextPhase={handleNextPhase}
+        onImageUpload={() => setHasUploadedImage(true)}
+        onImageCountChange={setImageCount}
+        onFilesChange={setImageFiles}
+        onSubmit={handleSubmit}
+      />
+      <ChatResultSection isLoading={isLoadingAnswer} chatResult={chatResult} />
+
       <div ref={scrollRef} />
     </>
   );
