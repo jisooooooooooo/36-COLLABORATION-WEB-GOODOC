@@ -18,7 +18,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
           placeholder="메시지를 입력하세요."
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
-          onKeyDown={e => e.key === 'Enter' && sendMessage(inputValue, onSend, clearInput)}
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+            }
+          }}
           className="flex-1 h-[2.5rem] px-[.625rem] py-[.5625rem] border border-[#ECEDF0] rounded-[.75rem] bg-white body-med-14 placeholder:body-med-14 placeholder:text-CGray-6 outline-none"
         />
         <SendIcon
